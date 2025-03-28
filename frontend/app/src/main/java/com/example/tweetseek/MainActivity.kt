@@ -18,6 +18,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
+import android.content.Intent
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
 
         // testing request to python (flask) server
         testRequest()
@@ -71,9 +75,9 @@ class MainActivity : AppCompatActivity() {
     HOST machine's (your personal machine) localhost
     which is why we are making a request to
     http://10.0.2.2:8000/ which is the python API running
-    on the HOST machine
-     */
-    private fun testRequest() {
+    on the HOST machine*/
+
+         private fun testRequest() {
         val client = OkHttpClient()
         val request = Request.Builder()
             .url("http://10.0.2.2:8000/")
