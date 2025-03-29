@@ -15,11 +15,13 @@ class LoginActivity : AppCompatActivity()  {
     lateinit var username: EditText
     lateinit var password: EditText
     lateinit var loginButton: Button
+    lateinit var registerButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoginPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.loginButton.setOnClickListener(View.OnClickListener {
             if (binding.username.text.toString() == "user" && binding.password.text.toString() == "abc123"){
                 Toast.makeText(this, "login success!", Toast.LENGTH_SHORT).show()
@@ -34,6 +36,13 @@ class LoginActivity : AppCompatActivity()  {
             } else {
                 Toast.makeText(this, "login failed :(", Toast.LENGTH_SHORT).show()
             }
+        })
+
+        binding.registerButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
         })
     }
 }
