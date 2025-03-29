@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     http://10.0.2.2:8000/ which is the python API running
     on the HOST machine*/
 
-         private fun testRequest() {
+    private fun testRequest() {
         val client = OkHttpClient()
         val request = Request.Builder()
             .url("http://10.0.2.2:8000/")
