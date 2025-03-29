@@ -64,7 +64,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/startIDButton"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="Start Bird ID"
@@ -73,7 +73,7 @@
             android:textSize="30dp"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/viewResultsButton"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:text="View Results"
@@ -85,7 +85,7 @@
             />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/accountSettingsButton"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:text="Account Settings"
