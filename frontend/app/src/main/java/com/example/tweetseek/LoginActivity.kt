@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity()  {
                 Toast.makeText(this, "login success!", Toast.LENGTH_SHORT).show()
 
                 // go to MainActivity
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, HomePage::class.java)
 
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
