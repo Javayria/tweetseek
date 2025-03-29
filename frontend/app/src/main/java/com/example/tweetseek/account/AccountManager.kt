@@ -5,20 +5,27 @@ import com.example.tweetseek.account.database.UserDatabase
 
 /**SINGLETON OBJECT **/
 object AccountManager {
+    enum class AuthResult { SUCCESS, USER_NOT_FOUND, INVALID_PASSWORD }
 
     fun init(context: Context) {
-        UserDatabase.init(context)  //can change this later to an instance but to keep it simple, its a global instance
+        UserDatabase.init(context)  //can change this later to a class constructor but to keep it simple, its a global instance
     }
 
     /**Function to register user in database given a username and password **/
     public fun registerUser(username:String, password: String): Boolean {
-
-        return true;
+        val newUser = UserInfo(username, password)
+        return UserDatabase.insertUser(newUser)
     }
 
-    /**Function to check given credentials against database to see if user exists **/
-    public fun checkCredentials(username:String, password: String): Boolean {
-
-        return true;
+    /**Function to check given credentials against the database and return an AuthResult **/
+    public fun checkCredentials(username:String, password: String): AuthResult {
+        val user = UserDatabase.getUser(username)
+        return if (user == null) {
+            AuthResult.USER_NOT_FOUND
+        } else if (user.password != password.toString()) {
+            AuthResult.INVALID_PASSWORD
+        } else {
+            AuthResult.SUCCESS
+        }
     }
 }

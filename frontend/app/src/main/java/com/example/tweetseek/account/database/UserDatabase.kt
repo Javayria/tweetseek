@@ -16,9 +16,9 @@ object UserDatabase {
         return true;
     }
 
-    /**Gets UserInfo for a specific username from database - doesn't handle Null values yet (user must exist for now) **/
-    public fun getUser(username: String): UserInfo {
-        return users.first {
+    /**Gets UserInfo for a specific username from database **/
+    public fun getUser(username: String): UserInfo? {
+        return users.firstOrNull() {
             it.username == username
         }
     }
