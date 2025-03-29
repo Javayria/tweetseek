@@ -7,11 +7,8 @@ from dotenv import load_dotenv
 
 from typing import Optional
 from dataclasses import (dataclass, asdict, field)
-from werkzeug.utils import secure_filename
 from experts.geminiExpert import GeminiExpert
 from utils import (allowed_file, process_file)
-#for image processing
-from PIL import Image
 import os
 
 #load env variables
