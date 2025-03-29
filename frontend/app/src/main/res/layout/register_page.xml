@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -27,22 +27,30 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
-                android:id="@+id/loginText"
-                android:textSize="36sp"
-                android:textAlignment="center"
+                android:text="Welcome to TweetSeek!"
+                android:id="@+id/welcomeText"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create a free account"
+                android:textSize="20sp"
+                android:paddingTop="10dp"
+                android:textColor="@color/black"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/username"
                 android:background="@drawable/custom_edittext"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:padding="8dp"
                 android:hint="Username"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp"/>
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -54,15 +62,6 @@
                 android:hint="Password"
                 android:textColor="@color/black"
                 android:drawablePadding="8dp"/>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Login"
-                android:id="@+id/loginButton"
-                android:textSize="18sp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/black"
-                app:cornerRadius = "20dp"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -70,7 +69,7 @@
                 android:text="Register"
                 android:id="@+id/registerButton"
                 android:textSize="18sp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/teal_700"
                 app:cornerRadius = "20dp"/>
 
