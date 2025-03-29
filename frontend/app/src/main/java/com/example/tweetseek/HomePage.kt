@@ -15,6 +15,13 @@ class HomePage : AppCompatActivity() {
         binding = HomePageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.startIDButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, SubmitRequestActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
+        })
+
         binding.signOutButton.setOnClickListener(View.OnClickListener {
             Toast.makeText(this, "Sign Out Successful!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, LoginActivity::class.java)

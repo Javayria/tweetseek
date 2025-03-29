@@ -6,15 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10">
+    android:weightSum="10"
+    tools:context=".HomePage">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:gravity="center">
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:background="@drawable/custom_edittext">
 
         <TextView
             android:layout_width="wrap_content"
@@ -48,11 +50,6 @@
         android:gravity="center"
         android:padding="8dp">
 
-        <View
-            android:layout_width="150dp"
-            android:layout_height="80dp"
-            android:background="@color/teal_700">
-        </View>
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +67,8 @@
             android:text="Start Bird ID"
             android:backgroundTint="@color/green"
             android:layout_marginBottom="8dp"
-            android:textSize="30dp"/>
+            android:textSize="30dp"
+            app:cornerRadius = "20dp"/>
 
         <Button
             android:id="@+id/viewResultsButton"
@@ -82,6 +80,7 @@
             android:backgroundTint="@color/grey"
             android:textSize="22sp"
             android:layout_marginTop="5dp"
+            app:cornerRadius = "20dp"
             />
 
         <Button
@@ -94,6 +93,7 @@
             android:layout_marginBottom="5dp"
             android:textSize="22sp"
             android:layout_marginTop="10dp"
+            app:cornerRadius = "20dp"
             />
 
         <Button
@@ -103,8 +103,9 @@
             android:text="Sign Out"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/teal_700"
             android:layout_marginTop="10dp"
+            app:cornerRadius = "20dp"
             />
     </LinearLayout>
 </LinearLayout>
