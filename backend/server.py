@@ -25,7 +25,7 @@ client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
 app = Flask(__name__)
 
-#hardcoded to provide gemini with the prompt for identifying the image
+
 form_image = ""
 
 @app.route('/')
@@ -64,7 +64,6 @@ def imageContext():
     return jsonify(success=False, message="File type not allowed")
 
 
-#streams response from server
 @app.route('/geminiexpert',methods=['GET'])
 def geminiExpert():
 
@@ -73,10 +72,11 @@ def geminiExpert():
     global form_image
 
     if form_image != "":
+        
         #choose not to stream content back as styling for UI will be harder
         response = client.models.generate_content(
             model="gemini-2.0-flash-001",
-            contents=[form_image,"Only provide the bird's name, identify the bird from the provided photo"]
+            contents=[form_image,"Only provide the bird's name, identify the bird from the provided photo"] #hardcoded to provide gemini with the prompt for identifying the image
         )
 
         print(response)
