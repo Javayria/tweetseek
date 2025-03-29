@@ -27,5 +27,4 @@
         </activity>
         <activity android:name=".HomePage"/>
     </application>
-
 </manifest>
