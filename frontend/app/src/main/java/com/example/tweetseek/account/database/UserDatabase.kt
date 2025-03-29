@@ -1,0 +1,25 @@
+package com.example.tweetseek.account.database
+import android.content.Context
+import com.example.tweetseek.account.UserInfo
+
+/**SINGLETON OBJECT **/
+object UserDatabase {
+    private val users = mutableListOf<UserInfo>()
+
+    fun init(context: Context) {}
+
+    /**Inserts user into database (provided that they don't already exist) **/
+    public fun insertUser(user: UserInfo): Boolean {
+        if (users.any { it.username == user.username})   //check to see if this user already exists
+            return false
+        users.add(user)
+        return true;
+    }
+
+    /**Gets UserInfo for a specific username from database - doesn't handle Null values yet (user must exist for now) **/
+    public fun getUser(username: String): UserInfo {
+        return users.first {
+            it.username == username
+        }
+    }
+}
