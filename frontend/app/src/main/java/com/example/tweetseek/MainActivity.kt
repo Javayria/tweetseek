@@ -19,6 +19,7 @@ import okhttp3.Request
 import okhttp3.Response
 import java.io.IOException
 import android.content.Intent
+import android.util.Log
 
 
 class MainActivity : AppCompatActivity() {
@@ -92,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                 response.use {
                     if (!response.isSuccessful) throw IOException("Unexpected code $response")
 
-                    println(response.body?.string())
+                    Log.d("MainActivity", response.body?.string().toString())
                 }
             }
         })
