@@ -10,4 +10,15 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="location">Location</string>
+    <string name="submit">Submit</string>
+    <string name="color">Color</string>
+    <string name="size">Size</string>
+    <string name="bird_information">Bird Information</string>
+    <string name="upload_audio">Upload Audio</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="upload_media">Upload Media</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
 </resources>
