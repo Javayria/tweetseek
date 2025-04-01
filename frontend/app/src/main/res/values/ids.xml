@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="titleText" type="id" />
+    <item name="buttonBack" type="id" />
+    <item name="imgUpload" type="id" />
+    <item name="audioUpload" type="id" />
+    <item name="sizeDropdownLayout" type="id" />
+    <item name="sizeDropdown" type="id" />
+    <item name="colorDropdownLayout" type="id" />
+    <item name="colorDropdown" type="id" />
+    <item name="locationDropdownLayout" type="id" />
+    <item name="locationDropdown" type="id" />
+</resources>

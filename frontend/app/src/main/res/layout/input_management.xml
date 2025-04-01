@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@android:color/white"
+    tools:context=".MainActivity">
+
+    <!-- Back Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="88dp"
+        android:backgroundTint="@android:color/transparent"
+        android:icon="@android:drawable/ic_media_previous"
+        android:insetTop="8dp"
+        android:insetBottom="8dp"
+        android:text="@string/back"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Title Text -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/upload_media"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        app:layout_constraintTop_toBottomOf="@id/buttonBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp" />
+
+    <!-- Upload Image -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/imgUpload"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="@string/upload_image"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/black"
+        app:iconPadding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+
+    <!-- Upload Audio -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/audioUpload"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:text="@string/upload_audio"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@android:color/holo_red_dark"
+        app:iconPadding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/imgUpload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="24dp" />
+
+    <!-- Section Label -->
+    <TextView
+        android:id="@+id/sectionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bird_information"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/audioUpload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Size Dropdown -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sizeDropdownLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/size"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintTop_toBottomOf="@id/sectionLabel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/sizeDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingHorizontal="16dp"
+            android:textSize="16sp"
+            tools:ignore="LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Color Dropdown -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/colorDropdownLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/color"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintTop_toBottomOf="@id/sizeDropdownLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/colorDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingHorizontal="16dp"
+            android:textSize="16sp"
+            tools:ignore="LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Location Dropdown -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/locationDropdownLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/location"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintTop_toBottomOf="@id/colorDropdownLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/locationDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingHorizontal="16dp"
+            android:textSize="16sp"
+            tools:ignore="LabelFor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- Submit Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@color/green"
+        android:text="@string/submit"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@id/locationDropdownLayout"
+        app:layout_constraintTop_toBottomOf="@id/locationDropdownLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
