@@ -1,3 +1,4 @@
+
 package com.example.tweetseek.identification
 
 import android.util.Log
@@ -12,6 +13,28 @@ import java.io.IOException
 
 // TODO clean this class up
 class IdentificationManager(private val requestData: RequestData) {
+  
+
+    fun submitIdentificationRequest() {
+
+    }
+
+    fun processForumIdentificationResult() {
+
+    }
+
+    fun displayForumResults() {
+
+    }
+
+    fun generateIdentificationReport(): ReportInfo {
+        return ReportInfo()
+    }
+
+    fun storeIdentificationReport(reportInfo: ReportInfo): Boolean {
+
+        return true
+    }
 
     private val JSON = "application/json".toMediaType()
     private val client = OkHttpClient()
