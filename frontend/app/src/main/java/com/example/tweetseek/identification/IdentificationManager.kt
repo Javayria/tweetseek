@@ -27,14 +27,14 @@ class IdentificationManager(private val requestData: RequestData) {
 
     }
 
-    fun generateIdentificationReport(): ReportInfo {
+    /*fun generateIdentificationReport(): ReportInfo {
         return ReportInfo()
     }
 
     fun storeIdentificationReport(reportInfo: ReportInfo): Boolean {
 
         return true
-    }
+    }*/
 
     private val JSON = "application/json".toMediaType()
     private val client = OkHttpClient()
