@@ -1,9 +1,7 @@
 
 package com.example.tweetseek.identification
 
-import android.content.Context
 import android.util.Log
-import com.example.tweetseek.identification.database.ReportDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
@@ -14,27 +12,36 @@ import org.json.JSONObject
 import java.io.IOException
 
 // TODO clean this class up
-class IdentificationManager(private val request: RequestData) {
-    private var currentResult: IdentificationResult? = null
+class IdentificationManager(private val requestData: RequestData) {
 
     private val JSON = "application/json".toMediaType()
     private val client = OkHttpClient()
 
-    // Contacts forum and determines bird species
-    suspend fun identifyBird(): IdentificationResult? = withContext(Dispatchers.IO) {
-        currentResult = null
-
+    // Contacts Forum and determines bird species
+    suspend fun submitIdentificationRequest(): IdentificationResult? = withContext(Dispatchers.IO) {
         // Build JSON body
         val body = JSONObject().apply {
-            put("imageFile", request.imageFile)
-            put("audioFile", request.audioFile)
-            put("size", request.size)
-            put("color", request.color)
-            put("location", request.location)
+            put("imageFile", requestData.imageFile)
+            put("audioFile", requestData.audioFile)
+            put("size", requestData.size)
+            put("color", requestData.color)
+            put("location", requestData.location)
         }
 
         // POST request to backend
         try {
+            /*
+            {
+                birdImage: "aisdyuf827eb8casbd7",
+                birdName: "pigeon"
+                expert: "image"
+            }
+             */
+            val response = post("http://10.0.2.2:8000/submitForm", body.toString())
+            Log.d("IdentificationManager", response)
+            // Get response here unpack it in proper form
+            // Push image to firebase storage
+            // Obtain link and push imageLink, imageName, expert to firestore
             val responseJSON = post("http://10.0.2.2:8000/submitForm", body.toString())
             val result = parseResponse(responseJSON)
             return@withContext result

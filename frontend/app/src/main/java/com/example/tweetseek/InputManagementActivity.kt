@@ -16,7 +16,6 @@ import com.example.tweetseek.identification.*
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-
 // TODO clean this class up
 class InputManagementActivity : AppCompatActivity() {
     private lateinit var binding: InputManagementBinding
@@ -28,7 +27,6 @@ class InputManagementActivity : AppCompatActivity() {
     private var base64Audio: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         binding = InputManagementBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -53,8 +51,8 @@ class InputManagementActivity : AppCompatActivity() {
             val idManager = IdentificationManager(requestData)
 
             lifecycleScope.launch {
-                val result = idManager.identifyBird()
-
+                val result = idManager.submitIdentificationRequest()
+                Log.d("InputManagement", "Server response: $result")
                 result?.let {
                     startActivity(
                         Intent(this@InputManagementActivity, ResultActivity::class.java).apply {
