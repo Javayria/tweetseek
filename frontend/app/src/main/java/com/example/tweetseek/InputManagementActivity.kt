@@ -1,22 +1,27 @@
 package com.example.tweetseek
 
+import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.widget.ArrayAdapter
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.GetContent
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tweetseek.databinding.InputManagementBinding
-import com.example.tweetseek.identification.IdentificationManager
-import com.example.tweetseek.identification.RequestData
+import com.example.tweetseek.identification.*
 import kotlinx.coroutines.launch
 import java.io.IOException
 
 // TODO clean this class up
 class InputManagementActivity : AppCompatActivity() {
     private lateinit var binding: InputManagementBinding
+    private val loadingLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        // Handle any return data if needed
+    }
 
     private var base64Image: String? = null
     private var base64Audio: String? = null
@@ -46,12 +51,17 @@ class InputManagementActivity : AppCompatActivity() {
             val idManager = IdentificationManager(requestData)
 
             lifecycleScope.launch {
-                val response = idManager.submitIdentificationRequest()
-                Log.d("InputManagement", "Server response: $response")
+                val result = idManager.submitIdentificationRequest()
+                Log.d("InputManagement", "Server response: $result")
+                result?.let {
+                    startActivity(
+                        Intent(this@InputManagementActivity, ResultActivity::class.java).apply {
+                            putExtra("bird_name", it.birdName)  // String
+                        }
+                    )
+                } ?: Toast.makeText(this@InputManagementActivity, "Identification failed", Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
 
     // Launchers for onClicks

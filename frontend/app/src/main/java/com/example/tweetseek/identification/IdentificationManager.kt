@@ -18,7 +18,7 @@ class IdentificationManager(private val requestData: RequestData) {
     private val client = OkHttpClient()
 
     // Contacts Forum and determines bird species
-    fun submitIdentificationRequest() {
+    suspend fun submitIdentificationRequest(): IdentificationResult? = withContext(Dispatchers.IO) {
         // Build JSON body
         val body = JSONObject().apply {
             put("imageFile", requestData.imageFile)
@@ -42,26 +42,14 @@ class IdentificationManager(private val requestData: RequestData) {
             // Get response here unpack it in proper form
             // Push image to firebase storage
             // Obtain link and push imageLink, imageName, expert to firestore
+            val responseJSON = post("http://10.0.2.2:8000/submitForm", body.toString())
+            val result = parseResponse(responseJSON)
+            return@withContext result
+
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("IdentificationManager", "Identification failed", e)
             null
-        }.toString()
-    }
-
-    fun processForumIdentificationResult() {
-
-    }
-
-    fun displayForumResults() {
-
-    }
-
-    fun generateIdentificationReport() {
-    }
-
-    fun storeIdentificationReport(): Boolean {
-
-        return true
+        }
     }
 
     // POST request creation
@@ -87,5 +75,14 @@ class IdentificationManager(private val requestData: RequestData) {
 
         Log.d("IdentificationManager", body)
         return body
+    }
+
+    private fun parseResponse(jsonString: String): IdentificationResult {
+        val json = JSONObject(jsonString)
+        return IdentificationResult(
+            image = json.getString("image"),
+            birdName = json.getString("birdName"),
+            expert = json.getString("expert")
+        )
     }
 }
