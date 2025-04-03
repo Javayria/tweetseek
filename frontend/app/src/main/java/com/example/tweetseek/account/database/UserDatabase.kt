@@ -8,7 +8,7 @@ object UserDatabase {
 
     fun init(context: Context) {}
 
-    /**Inserts user into database (provided that they don't already exist) **/
+    /**Insegit purts user into database (provided that they don't already exist) **/
     public fun insertUser(user: UserInfo): Boolean {
         if (users.any { it.username == user.username})   //check to see if this user already exists
             return false

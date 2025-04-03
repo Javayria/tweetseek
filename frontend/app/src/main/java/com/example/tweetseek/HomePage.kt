@@ -16,7 +16,7 @@ class HomePage : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.startIDButton.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, SubmitRequestActivity::class.java)
+            val intent = Intent(this, InputManagementActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
