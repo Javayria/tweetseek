@@ -1,7 +1,9 @@
 
 package com.example.tweetseek.identification
 
+import android.content.Context
 import android.util.Log
+import com.example.tweetseek.identification.database.ReportDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
@@ -12,43 +14,39 @@ import org.json.JSONObject
 import java.io.IOException
 
 // TODO clean this class up
-class IdentificationManager(private val requestData: RequestData) {
+class IdentificationManager(private val request: RequestData) {
+    private var currentResult: IdentificationResult? = null
 
-
-    fun submitIdentificationRequest() {
-
-    }
-
-    fun processForumIdentificationResult() {
-
-    }
-
-    fun displayForumResults() {
-
+    fun init(context: Context) {
+        ReportDatabase.init(context)
     }
 
     private val JSON = "application/json".toMediaType()
     private val client = OkHttpClient()
 
     // Contacts forum and determines bird species
-    suspend fun identifyBird(): String? = withContext(Dispatchers.IO) {
+    suspend fun identifyBird(): IdentificationResult? = withContext(Dispatchers.IO) {
+        currentResult = null
+
         // Build JSON body
         val body = JSONObject().apply {
-            put("imageFile", requestData.imageFile)
-            put("audioFile", requestData.audioFile)
-            put("size", requestData.size)
-            put("color", requestData.color)
-            put("location", requestData.location)
+            put("imageFile", request.imageFile)
+            put("audioFile", request.audioFile)
+            put("size", request.size)
+            put("color", request.color)
+            put("location", request.location)
         }
 
         // POST request to backend
         try {
-            val response = post("http://10.0.2.2:8000/submitForm", body.toString())
-            Log.d("IdentificationManager", response)
+            val responseJSON = post("http://10.0.2.2:8000/submitForm", body.toString())
+            val result = parseResponse(responseJSON)
+            return@withContext result
+
         } catch (e: Exception) {
-            e.printStackTrace()
+            Log.e("IdentificationManager", "Identification failed", e)
             null
-        }.toString()
+        }
     }
 
     // POST request creation
@@ -74,5 +72,14 @@ class IdentificationManager(private val requestData: RequestData) {
 
         Log.d("IdentificationManager", body)
         return body
+    }
+
+    private fun parseResponse(jsonString: String): IdentificationResult {
+        val json = JSONObject(jsonString)
+        return IdentificationResult(
+            image = json.getString("image"),
+            birdName = json.getString("birdName"),
+            expert = json.getString("expert")
+        )
     }
 }
