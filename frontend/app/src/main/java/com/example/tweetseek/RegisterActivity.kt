@@ -24,7 +24,7 @@ class RegisterActivity : AppCompatActivity()  {
             }
             else{
                 if(AccountManager.registerUser(username, password)) {
-                    Toast.makeText(this, "Account successfully created!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "REGISTER SUCCESSFUL!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     finish()

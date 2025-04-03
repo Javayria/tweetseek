@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity()  {
 
         /**THIS IS PURELY FOR TESTING PURPOSED TO GO TO HOME PAGE **/
         if ((username == "user" && password == "abc123") || (authResult == AccountManager.AuthResult.SUCCESS)) {
-            Toast.makeText(this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "LOGIN SUCCESSFUL!", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, HomePage::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             })
