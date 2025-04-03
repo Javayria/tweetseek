@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val intent = Intent(this, LoginActivity::class.java)
+        val intent = Intent(this, InputManagementActivity::class.java)  //just for testing
         startActivity(intent)
 
         // testing request to python (flask) server
