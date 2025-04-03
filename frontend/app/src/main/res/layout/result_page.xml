@@ -5,13 +5,15 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/birdName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Identified Bird is: "
-        android:id="@+id/birdName"
-        android:textSize="36sp"
         android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="104dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

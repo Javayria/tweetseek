@@ -1,8 +1,5 @@
 package com.example.tweetseek.identification
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class IdentificationResult(
     val image: String,
     val birdName: String,
