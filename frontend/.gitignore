@@ -28,6 +28,7 @@ captures/
 
 # Firebase config
 google-services.json
+.dataconnect
 
 # OS-specific
 .DS_Store
