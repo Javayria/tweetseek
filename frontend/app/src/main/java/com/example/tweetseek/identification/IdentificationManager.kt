@@ -17,10 +17,6 @@ import java.io.IOException
 class IdentificationManager(private val request: RequestData) {
     private var currentResult: IdentificationResult? = null
 
-    fun init(context: Context) {
-        ReportDatabase.init(context)
-    }
-
     private val JSON = "application/json".toMediaType()
     private val client = OkHttpClient()
 
