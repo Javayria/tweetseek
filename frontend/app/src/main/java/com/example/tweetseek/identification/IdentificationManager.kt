@@ -13,34 +13,12 @@ import java.io.IOException
 
 // TODO clean this class up
 class IdentificationManager(private val requestData: RequestData) {
-  
-
-    fun submitIdentificationRequest() {
-
-    }
-
-    fun processForumIdentificationResult() {
-
-    }
-
-    fun displayForumResults() {
-
-    }
-
-    fun generateIdentificationReport(): ReportInfo {
-        return ReportInfo()
-    }
-
-    fun storeIdentificationReport(reportInfo: ReportInfo): Boolean {
-
-        return true
-    }
 
     private val JSON = "application/json".toMediaType()
     private val client = OkHttpClient()
 
-    // Contacts forum and determines bird species
-    suspend fun identifyBird(): String? = withContext(Dispatchers.IO) {
+    // Contacts Forum and determines bird species
+    fun submitIdentificationRequest() {
         // Build JSON body
         val body = JSONObject().apply {
             put("imageFile", requestData.imageFile)
@@ -52,12 +30,38 @@ class IdentificationManager(private val requestData: RequestData) {
 
         // POST request to backend
         try {
+            /*
+            {
+                birdImage: "aisdyuf827eb8casbd7",
+                birdName: "pigeon"
+                expert: "image"
+            }
+             */
             val response = post("http://10.0.2.2:8000/submitForm", body.toString())
             Log.d("IdentificationManager", response)
+            // Get response here unpack it in proper form
+            // Push image to firebase storage
+            // Obtain link and push imageLink, imageName, expert to firestore
         } catch (e: Exception) {
             e.printStackTrace()
             null
         }.toString()
+    }
+
+    fun processForumIdentificationResult() {
+
+    }
+
+    fun displayForumResults() {
+
+    }
+
+    fun generateIdentificationReport() {
+    }
+
+    fun storeIdentificationReport(): Boolean {
+
+        return true
     }
 
     // POST request creation

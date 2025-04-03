@@ -46,7 +46,7 @@ class InputManagementActivity : AppCompatActivity() {
             val idManager = IdentificationManager(requestData)
 
             lifecycleScope.launch {
-                val response = idManager.identifyBird()
+                val response = idManager.submitIdentificationRequest()
                 Log.d("InputManagement", "Server response: $response")
             }
         }
