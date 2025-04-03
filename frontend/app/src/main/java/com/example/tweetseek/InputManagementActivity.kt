@@ -59,6 +59,8 @@ class InputManagementActivity : AppCompatActivity() {
                     startActivity(
                         Intent(this@InputManagementActivity, ResultActivity::class.java).apply {
                             putExtra("bird_name", it.birdName)  // String
+                            putExtra("bird_image", it.birdImage)
+                            putExtra("expert", it.expert)
                         }
                     )
                 } ?: Toast.makeText(this@InputManagementActivity, "Identification failed", Toast.LENGTH_SHORT).show()
