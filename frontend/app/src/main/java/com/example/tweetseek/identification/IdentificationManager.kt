@@ -27,7 +27,9 @@ class IdentificationManager(private val requestData: RequestData) {
 
     }
 
-    /*fun generateIdentificationReport(): ReportInfo {
+    /*
+
+    fun generateIdentificationReport(): ReportInfo {
         return ReportInfo()
     }
 

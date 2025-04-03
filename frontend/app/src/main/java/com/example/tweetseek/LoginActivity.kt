@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity()  {
         })
     }
 
-    /**Helper function to ask AccountManager to get authentification result **/
+    /**Helper function to ask AccountManager to get authentication result **/
     private fun authenticateUser(username:String, password:String) {
 
         val authResult = AccountManager.checkCredentials(username, password)
