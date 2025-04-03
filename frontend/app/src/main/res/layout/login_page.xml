@@ -14,8 +14,8 @@
     <!-- Logo Input -->
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="362dp"
-        android:layout_height="245dp"
+        android:layout_width="372dp"
+        android:layout_height="255dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         app:srcCompat="@drawable/logo" />
@@ -26,12 +26,15 @@
         android:layout_width="@dimen/button_width_m"
         android:layout_height="50dp"
         android:layout_marginTop="0dp"
-        android:background="?attr/editTextBackground"
-        android:drawablePadding="80dp"
+
+        android:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+
         android:fontFamily="monospace"
         android:hint="username"
         android:padding="8dp"
-        android:textColor="@color/red" />
+        />
 
     <!-- Password Input -->
     <EditText
@@ -39,13 +42,17 @@
         android:layout_width="@dimen/button_width_m"
         android:layout_height="50dp"
         android:layout_marginTop="@dimen/margin_between"
-        android:background="?attr/editTextBackground"
-        android:drawablePadding="8dp"
+
+        android:backgroundTint="@color/black"
+        android:textColor="@color/red"
+        android:textColorHint="@color/black"
+
         android:fontFamily="monospace"
         android:hint="password"
         android:inputType="textPassword"
+
         android:padding="8dp"
-        android:textColor="@color/red" />
+         />
 
     <!-- Login Button -->
     <Button
