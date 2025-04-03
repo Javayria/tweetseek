@@ -13,7 +13,7 @@ import java.io.IOException
 
 // TODO clean this class up
 class IdentificationManager(private val requestData: RequestData) {
-  
+
 
     fun submitIdentificationRequest() {
 
@@ -25,15 +25,6 @@ class IdentificationManager(private val requestData: RequestData) {
 
     fun displayForumResults() {
 
-    }
-
-    fun generateIdentificationReport(): ReportInfo {
-        return ReportInfo()
-    }
-
-    fun storeIdentificationReport(reportInfo: ReportInfo): Boolean {
-
-        return true
     }
 
     private val JSON = "application/json".toMediaType()
