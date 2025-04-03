@@ -5,8 +5,17 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
     <color name="green">#FF7DAC44</color>
     <color name="grey">#FFF2F3F5</color>
+    <!--tweetseek colourscheme -->
+    <color name="red">#BA3535</color>
+    <color name="white">#EFF6EE</color>
+    <color name="black">#192212</color>
+    <color name="light_blue">#D2E6EC</color>
+    <color name="blue">#99C8E7</color>
+    <color name="light_green">#90A088</color>
+
+
+
+
 </resources>
