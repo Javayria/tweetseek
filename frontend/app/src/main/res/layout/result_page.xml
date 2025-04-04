@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
+    android:background="@drawable/cloudy_bg"
     tools:context=".RegisterActivity">
 
     <ImageButton
@@ -13,11 +13,11 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="25dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo"
+        android:src="@drawable/check"
     />
 
     <LinearLayout
@@ -31,43 +31,56 @@
             android:layout_width="372dp"
             android:layout_height="255dp"
             android:layout_marginTop="50dp"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginBottom="30dp" />
 
         <TextView
             android:id="@+id/birdName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:textSize="40dp"
             android:textStyle="bold"
             android:textAllCaps="true"
             android:textColor="@color/red"
             android:fontFamily="monospace"
             android:padding="8dp"
-            android:gravity="center" />
+            android:gravity="center"
+            />
 
         <TextView
             android:id="@+id/birdExpert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="@color/blue"
+            android:textColor="@color/red"
             android:fontFamily="monospace"
             android:padding="8dp"
             android:gravity="center" />
 
-        <Button
-            android:id="@+id/shareButton"
-            android:layout_width="@dimen/button_width_s"
-            android:layout_height="65dp"
-            android:layout_marginTop="30dp"
-            android:backgroundTint="@color/red"
+        <ImageButton
+            android:id="@+id/uploadButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginTop="40dp"
+            android:scaleType="centerCrop"
+            android:gravity="center"
+            android:src="@drawable/up_red"
+            />
+
+        <TextView
+            android:id="@+id/upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:text="share"
+            android:textColor="@color/red"
             android:fontFamily="monospace"
-            android:text="Share"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            app:cornerRadius="10dp" />
+            android:gravity="center" />
+
     </LinearLayout>
 </RelativeLayout>

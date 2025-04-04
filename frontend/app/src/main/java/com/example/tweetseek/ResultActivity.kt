@@ -22,9 +22,6 @@ class ResultActivity : AppCompatActivity() {
         //retrieve all data from the intent
         val birdName = intent.getStringExtra("bird_name")
         val birdImage = intent.getStringExtra("bird_image")
-        Log.d("ResultActivity", birdImage.toString())
-        Log.d("ResultActivity", birdName.toString())
-
         val birdExpert = intent.getStringExtra("bird_expert")
 
         when {
@@ -59,7 +56,6 @@ class ResultActivity : AppCompatActivity() {
 
             try {
                 Log.d("ResultActivity: imageBase64.length ", imageBase64.length.toString())
-
                 val decodedImage = convertStringToBitmap(cleanBase64String(imageBase64))
                 birdImage.setImageBitmap(decodedImage)
 
@@ -67,8 +63,6 @@ class ResultActivity : AppCompatActivity() {
                 Toast.makeText(this@ResultActivity, "Error loading image", Toast.LENGTH_SHORT).show()
                 birdImage.setImageResource(android.R.drawable.ic_menu_report_image)
             }
-
-            // Optional: Add click listeners or other UI updates
         }
     }
     private fun cleanBase64String(base64String: String): String {
