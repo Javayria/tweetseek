@@ -26,4 +26,5 @@
     <string name="update_password">Update Password</string>
     <string name="new_password">new password</string>
     <string name="email_example_com">email@example.com</string>
+    <string name="create_an_account">create an account</string>
 </resources>

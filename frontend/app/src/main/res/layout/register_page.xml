@@ -3,18 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/login_bg"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".RegisterActivity">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp">
+        app:cardCornerRadius="50dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#B3FFFFFF"
+        app:cardPreventCornerOverlap="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,56 +27,63 @@
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             android:padding="24dp"
-            android:background="@drawable/custom_edittext">
+            android:background="@drawable/register_box">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Welcome to TweetSeek!"
                 android:id="@+id/welcomeText"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create a free account"
-                android:textSize="20sp"
-                android:paddingTop="10dp"
-                android:textColor="@color/black"/>
+                android:fontFamily="monospace"
+                android:text="@string/create_an_account"
+                android:textColor="@color/red"
+                android:textSize="25sp"
+                android:textStyle="bold" />
 
+            <!-- Username Input -->
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
                 android:id="@+id/username"
-                android:background="@drawable/custom_edittext"
-                android:layout_marginTop="30dp"
-                android:padding="8dp"
-                android:hint="Username"
-                android:textColor="@color/black"
-                android:drawablePadding="8dp"/>
-
-            <EditText
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/button_width_m"
                 android:layout_height="50dp"
-                android:id="@+id/password"
-                android:background="@drawable/custom_edittext"
-                android:layout_marginTop="20dp"
-                android:inputType="textPassword"
-                android:padding="8dp"
-                android:hint="Password"
+                android:layout_marginTop="30dp"
+
+                android:backgroundTint="@color/black"
                 android:textColor="@color/black"
-                android:drawablePadding="8dp"/>
+                android:textColorHint="@color/black"
+
+                android:fontFamily="monospace"
+                android:hint="username"
+                android:padding="8dp"
+                />
+
+            <!-- Password Input -->
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="@dimen/button_width_m"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/margin_between"
+
+                android:backgroundTint="@color/black"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+
+                android:fontFamily="monospace"
+                android:hint="password"
+
+                android:padding="8dp"
+                />
 
             <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Register"
                 android:id="@+id/registerButton"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/teal_700"
-                app:cornerRadius = "20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/red"
+                android:fontFamily="monospace"
+                android:text="register"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:cornerRadius="10dp"
+                android:layout_gravity=""/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

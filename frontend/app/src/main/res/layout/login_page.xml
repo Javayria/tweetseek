@@ -13,12 +13,12 @@
     tools:context=".LoginActivity">
     <!-- Logo Input -->
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/login_logo"
         android:layout_width="372dp"
         android:layout_height="255dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/login_logo" />
 
     <!-- Username Input -->
     <EditText
@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/margin_between"
 
         android:backgroundTint="@color/black"
-        android:textColor="@color/red"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
 
         android:fontFamily="monospace"
@@ -71,7 +71,7 @@
     <Button
         android:id="@+id/registerButton"
         android:layout_width="@dimen/button_width_s"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="1dp"
         android:backgroundTint="@color/light_green"
         android:fontFamily="monospace"

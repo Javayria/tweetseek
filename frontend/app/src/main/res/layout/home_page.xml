@@ -3,109 +3,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
+    android:background="@drawable/home_bg"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".HomePage">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="vertical"
-        android:layout_margin="16dp"
-        android:gravity="center"
-        android:background="@drawable/custom_edittext">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TweetSeek"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bird Identification App"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Welcome to the Homepage!"
-            android:textSize="16sp"/>
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/home_logo"
+        android:layout_width="372dp"
+        android:layout_height="292dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/home_logo" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:padding="8dp">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="229dp"
         android:layout_weight="6"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="40dp"
-        android:gravity="center">
+        android:layout_marginTop="40dp">
 
         <Button
             android:id="@+id/startIDButton"
-            android:layout_width="match_parent"
+            android:layout_width="283dp"
             android:layout_height="100dp"
-            android:text="Start Bird ID"
-            android:backgroundTint="@color/green"
-            android:layout_marginBottom="8dp"
-            android:textSize="30dp"
-            app:cornerRadius = "20dp"/>
+            android:layout_marginTop="90dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="monospace"
+            android:text="START"
+            android:textColor="@color/blue"
+            android:textSize="62sp"
+            app:cornerRadius="10dp" />
 
         <Button
             android:id="@+id/viewResultsButton"
-            android:layout_width="match_parent"
+            android:layout_width="283dp"
             android:layout_height="70dp"
-            android:text="View Results"
-            android:textColor="@color/green"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="@color/grey"
-            android:textSize="22sp"
-            android:layout_marginTop="5dp"
-            app:cornerRadius = "20dp"
-            />
-
-        <Button
-            android:id="@+id/accountSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:text="Account Settings"
-            android:textColor="@color/green"
-            android:backgroundTint="@color/grey"
-            android:layout_marginBottom="5dp"
-            android:textSize="22sp"
-            android:layout_marginTop="10dp"
-            app:cornerRadius = "20dp"
-            />
-
-        <Button
-            android:id="@+id/signOutButton"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Sign Out"
+            android:layout_marginTop="1dp"
+            android:backgroundTint="@color/blue"
+            android:fontFamily="monospace"
+            android:text="VIEW RESULTS"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:backgroundTint="@color/teal_700"
-            android:layout_marginTop="10dp"
-            app:cornerRadius = "20dp"
-            />
+            android:textSize="30sp"
+            app:cornerRadius="10dp" />
+
+
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/settingsButton"
+        android:contentDescription="Settings"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="50dp"
+        android:background="@null"
+        app:srcCompat="@drawable/settings" />
 </LinearLayout>
