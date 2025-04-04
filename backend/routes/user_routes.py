@@ -73,11 +73,12 @@ def formSubmit():
 
     try:
         #incase encoding the base64 image throws an error
-        base64Image = get_new_image_base64(expertResponse.GeminiResponse)
+        base64Image, imageFound = get_new_image_base64(expertResponse.GeminiResponse)
     except Exception as ex:
         print(f"Error encoding image: {ex}")
 
     formResponseDTO.birdImage = base64Image
+    formResponseDTO.imageFound = imageFound #now can check this imageFound var and if an image of a bird isn't found we can return False, this way we can render a textbox stating suitable image not found on the F.E.
     
     return jsonify(
         success = True,
