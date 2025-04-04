@@ -74,10 +74,10 @@ class InputManagementActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                IdentificationManager(requestData).identifyBird()?.let { result ->
+                IdentificationManager(requestData).submitIdentificationRequest()?.let { result ->
                     startActivity(Intent(this@InputManagementActivity, ResultActivity::class.java).apply {
                         putExtra("bird_name", result.birdName)
-                        putExtra("bird_image", result.image)
+                        putExtra("bird_image", result.birdImage)
                         putExtra("bird_expert", result.expert)
                     })
                 } ?: Toast.makeText(

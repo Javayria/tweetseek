@@ -26,17 +26,8 @@ class HomePage : AppCompatActivity() {
             finish()
         }
 
-        binding.signOutButton.setOnClickListener {
-            auth.signOut()
-            Log.d("HomePage", "User has signed out successfully!")
-            Toast.makeText(this, "Sign Out Successful!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            finish()
-        }
 
-        binding.accountSettingsButton.setOnClickListener {
+        binding.settingsButton.setOnClickListener {
             val intent = Intent(this, AccountSettingsActivity::class.java)
             startActivity(intent)
         }
