@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/margin_between"
 
         android:backgroundTint="@color/black"
-        android:textColor="@color/red"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
 
         android:fontFamily="monospace"
