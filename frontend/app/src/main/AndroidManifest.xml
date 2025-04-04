@@ -19,6 +19,8 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ResultActivity" />
         <activity android:name=".InputManagementActivity" />
+        <activity android:name=".ResultActivity" />
+        <activity android:name=".AccountSettingsActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

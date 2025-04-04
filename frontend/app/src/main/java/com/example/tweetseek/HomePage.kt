@@ -35,6 +35,12 @@ class HomePage : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.accountSettingsButton.setOnClickListener {
+            val intent = Intent(this, AccountSettingsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
 }
