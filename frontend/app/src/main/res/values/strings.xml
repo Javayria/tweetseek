@@ -21,4 +21,9 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="sign_out">Sign out</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="update_password">Update Password</string>
+    <string name="new_password">new password</string>
+    <string name="email_example_com">email@example.com</string>
 </resources>
