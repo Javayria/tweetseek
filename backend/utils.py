@@ -55,6 +55,7 @@ def get_new_image_base64(birdName):
     #going to use INaturalist API to retrieve bird image
     #if no image provided by INaturalist API retrieve default image
 
+    imageFound = False
     #default imageURL hosted on postimg site
     image_url = "https://i.postimg.cc/fW39L0bp/anonymous-Bird.jpg"
 
@@ -67,9 +68,11 @@ def get_new_image_base64(birdName):
         results = res.json().get("results",[]) #default to empty array if no results
         if results:
             image_url = results[0]["record"]["default_photo"]["square_url"]
+            imageFound = True #found suitable image
        
     #Return base 64 encoding of image, using imageUrl 
     try:
+        print(image_url)
         imageResponse = requests.get(image_url)
 
         #if imageUrl rejects request or for some reason there is a status other than the 200s
@@ -77,7 +80,7 @@ def get_new_image_base64(birdName):
 
         image_bytes = imageResponse.content
         encoded = base64.b64encode(image_bytes).decode('utf-8')
-        return encoded
+        return (encoded, imageFound)
     
     except Exception as exc:
         print(f"Error retrieving image from url: {exc}")
