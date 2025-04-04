@@ -12,14 +12,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.tweetseek.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
-import java.io.IOException
 import android.content.Intent
-import android.util.Log
+import com.google.firebase.FirebaseApp
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,11 +24,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val intent = Intent(this, LoginActivity::class.java)  //just for testing
-        startActivity(intent)
+        FirebaseApp.initializeApp(this)
+        val intent = Intent(this, LoginActivity::class.java)
 
-        // testing request to python (flask) server
-        testRequest()
+        startActivity(intent)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -71,31 +64,4 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    /*
-    The mobile app is run on an emulator and ip 10.0.2.2 maps to the
-    HOST machine's (your personal machine) localhost
-    which is why we are making a request to
-    http://10.0.2.2:8000/ which is the python API running
-    on the HOST machine*/
-
-    private fun testRequest() {
-        val client = OkHttpClient()
-        val request = Request.Builder()
-            .url("http://10.0.2.2:8000/")
-            .build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                e.printStackTrace()
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                response.use {
-                    if (!response.isSuccessful) throw IOException("Unexpected code $response")
-
-                    Log.d("MainActivity", response.body?.string().toString())
-                }
-            }
-        })
-    }
 }
