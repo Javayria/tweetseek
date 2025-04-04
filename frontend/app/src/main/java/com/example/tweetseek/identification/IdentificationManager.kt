@@ -35,7 +35,7 @@ class IdentificationManager(private val request: RequestData) {
 
         // POST request to backend
         try {
-            val responseJSON = post("http://10.0.2.2:8000/submitForm", body.toString())
+            val responseJSON = get("http://10.0.2.2:8000/")
             val result = parseResponse(responseJSON)
             return@withContext result
 
@@ -70,10 +70,34 @@ class IdentificationManager(private val request: RequestData) {
         return body
     }
 
+    // GET request creation
+    // TODO move out of here
+    private suspend fun get(url: String): String = withContext(Dispatchers.IO) {
+        val request = Request.Builder()
+            .url(url)
+            .get()
+            .build()
+
+        val response = client.newCall(request).execute()
+
+        if (!response.isSuccessful) {
+            throw IOException("Unexpected response code: ${response.code}")
+        }
+
+        val body = response.body?.string()
+        if (body == null) {
+            Log.e("IdentificationManager", "GET response body is null")
+            throw IOException("Empty response body")
+        }
+
+        Log.d("IdentificationManager", body)
+        return@withContext body
+    }
+
     private fun parseResponse(jsonString: String): IdentificationResult {
         val json = JSONObject(jsonString)
         return IdentificationResult(
-            image = json.getString("image"),
+            image = json.getString("birdImage"),
             birdName = json.getString("birdName"),
             expert = json.getString("expert")
         )

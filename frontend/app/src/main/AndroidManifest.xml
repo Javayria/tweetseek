@@ -17,6 +17,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".HomePage" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".ResultActivity" />
         <activity android:name=".InputManagementActivity" />
         <activity
             android:name=".MainActivity"
