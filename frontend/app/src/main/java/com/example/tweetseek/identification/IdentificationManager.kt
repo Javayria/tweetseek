@@ -18,7 +18,7 @@ import java.io.ByteArrayInputStream
 import java.io.IOException
 import java.util.UUID
 
-class IdentificationManager(private val request: RequestData) {
+class IdentificationManager(private val requestData: RequestData) {
     private val JSON = "application/json".toMediaType()
     private val client = OkHttpClient()
     private val storage = FirebaseStorage.getInstance("gs://tweetseek.firebasestorage.app")
@@ -27,11 +27,11 @@ class IdentificationManager(private val request: RequestData) {
 
     suspend fun submitIdentificationRequest(): IdentificationResult? = withContext(Dispatchers.IO) {
         val body = JSONObject().apply {
-            put("imageFile", request.imageFile)
-            put("audioFile", request.audioFile)
-            put("size", request.size)
-            put("color", request.color)
-            put("location", request.location)
+            put("imageFile", requestData.imageFile)
+            put("audioFile", requestData.audioFile)
+            put("size", requestData.size)
+            put("color", requestData.color)
+            put("location", requestData.location)
         }
 
         try {
