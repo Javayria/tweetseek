@@ -23,8 +23,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         FirebaseApp.initializeApp(this)
         val intent = Intent(this, LoginActivity::class.java)
+
         startActivity(intent)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
