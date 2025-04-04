@@ -19,7 +19,7 @@
         android:layout_width="372dp"
         android:layout_height="292dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         app:srcCompat="@drawable/home_logo" />
 
     <LinearLayout
@@ -55,18 +55,7 @@
             android:textSize="30sp"
             app:cornerRadius="10dp" />
 
-        <Button
-            android:id="@+id/signOutButton"
-            android:layout_width="283dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="1dp"
-            android:backgroundTint="#99c3e7"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="sign out"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            app:cornerRadius="10dp" />
+
     </LinearLayout>
 
     <ImageButton
