@@ -25,6 +25,7 @@ class ResultActivity : AppCompatActivity() {
         val birdName = intent.getStringExtra("bird_name")
         val birdImage = intent.getStringExtra("bird_image")
         val birdExpert = intent.getStringExtra("bird_expert")
+        val funFact = intent.getStringExtra("funFact")
 
         when {
             birdName == null -> {
@@ -36,8 +37,11 @@ class ResultActivity : AppCompatActivity() {
             birdExpert == null -> {
                 showErrorAndFinish("Missing expert info")
             }
+            funFact == null -> {
+                showErrorAndFinish("Missing fun fact")
+            }
             else -> {
-                displayResults(birdName, birdImage, birdExpert)
+                displayResults(birdName, birdImage, birdExpert, funFact)
             }
         }
 
@@ -51,10 +55,11 @@ class ResultActivity : AppCompatActivity() {
         })
     }
 
-    private fun displayResults(name: String, image: String, expert: String) {
+    private fun displayResults(name: String, image: String, expert: String, funFact: String) {
         binding.apply {
             birdName.text = "BIRD: ${name.uppercase()}"
-            birdExpert.text = "identified by: $expert"
+            birdExpert.text = "identified by $expert"
+            birdFunFact.text = "did you know? ${funFact.lowercase()}"
 
             try {
                 if (image.startsWith("http")) {
