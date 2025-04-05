@@ -10,66 +10,53 @@
     tools:context=".activity.MainActivity">
 
     <!-- Back Button -->
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/buttonBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="88dp"
-        android:backgroundTint="@android:color/transparent"
-        android:icon="@android:drawable/ic_media_previous"
-        android:insetTop="8dp"
-        android:insetBottom="8dp"
-        android:text="@string/back"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentEnd="true"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Title Text -->
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/upload_media"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        app:layout_constraintTop_toBottomOf="@id/buttonBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="24dp" />
 
     <!-- Upload Image -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/imgUpload"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:text="@string/upload_image"
+        android:layout_height="70dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="monospace"
         android:icon="@android:drawable/ic_menu_camera"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/black"
+        android:text="@string/upload_image"
+        android:textSize="20sp"
+        android:textColor="@color/blue"
         app:iconPadding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/titleText"
-        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonBack" />
 
     <!-- Upload Audio -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/audioUpload"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:text="@string/upload_audio"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/yellow"
+        android:fontFamily="monospace"
         android:icon="@android:drawable/ic_btn_speak_now"
+        android:text="@string/upload_audio"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/holo_red_dark"
         app:iconPadding="12dp"
-        app:layout_constraintTop_toBottomOf="@id/imgUpload"
-        app:layout_constraintStart_toStartOf="parent"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgUpload" />
 
     <!-- Section Label -->
     <TextView
@@ -77,10 +64,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bird_information"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="16dp"
+        android:fontFamily="monospace"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="50dp"
         app:layout_constraintTop_toBottomOf="@id/audioUpload"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -92,6 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="@string/size"
+
         app:endIconMode="dropdown_menu"
         app:layout_constraintTop_toBottomOf="@id/sectionLabel"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,8 +90,9 @@
             android:id="@+id/sizeDropdown"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:fontFamily="monospace"
             android:paddingHorizontal="16dp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,8 +112,9 @@
             android:id="@+id/colorDropdown"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:fontFamily="monospace"
             android:paddingHorizontal="16dp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -143,8 +134,9 @@
             android:id="@+id/locationDropdown"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:fontFamily="monospace"
             android:paddingHorizontal="16dp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,13 +144,16 @@
     <!-- Submit Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_width="172dp"
+        android:layout_height="65dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="128dp"
         android:layout_marginEnd="4dp"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="@color/white"
         android:text="@string/submit"
-        android:textColor="@android:color/white"
+        android:textColor="@color/blue"
+        android:textSize="30sp"
+        app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@id/locationDropdownLayout"
         app:layout_constraintTop_toBottomOf="@id/locationDropdownLayout" />
 
