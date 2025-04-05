@@ -1,7 +1,4 @@
 import os
-import io 
-from PIL import Image
-from werkzeug.utils import secure_filename
 import requests, base64
 import shutil
 
@@ -79,15 +76,6 @@ def get_new_image_base64(birdName):
     except Exception as exc:
         print(f"Error retrieving image from url: {exc}")
         return None    
-
-def parse_birdName_string(response_string):
-    weightedExpertResponse = ""
-
-    for name in response_string.split("-"):
-        weightedExpertResponse += name.capitalize() + " "
-
-    # Remove the trailing space at the end
-    return weightedExpertResponse.strip()
 
 
 

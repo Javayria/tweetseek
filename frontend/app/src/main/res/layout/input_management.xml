@@ -6,18 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@drawable/patternedblue_bg_"
+    android:background="@drawable/home_bg"
     tools:context=".activity.MainActivity">
 
     <!-- Back Button -->
     <ImageButton
         android:id="@+id/buttonBack"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerCrop"
         android:src="@drawable/back"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteY="24dp" />
@@ -46,18 +47,32 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/yellow"
+        android:backgroundTint="@color/white"
         android:fontFamily="monospace"
         android:icon="@android:drawable/ic_btn_speak_now"
         android:text="@string/upload_audio"
         android:textSize="20sp"
-        android:textColor="@android:color/white"
+        android:textColor="@color/blue"
         app:iconPadding="12dp"
         app:cornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgUpload" />
 
+    <!-- Section Label Shadow -->
+    <TextView
+        android:id="@+id/sectionLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bird_information"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:textColor="@color/yellow"
+        android:layout_marginTop="75.5dp"
+        app:layout_constraintTop_toBottomOf="@id/audioUpload"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
     <!-- Section Label -->
     <TextView
         android:id="@+id/sectionLabel"
@@ -67,8 +82,8 @@
         android:textSize="25sp"
         android:textStyle="bold"
         android:fontFamily="monospace"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="50dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="74dp"
         app:layout_constraintTop_toBottomOf="@id/audioUpload"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -147,7 +162,7 @@
         android:layout_width="172dp"
         android:layout_height="65dp"
         android:layout_gravity="end"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="4dp"
         android:backgroundTint="@color/white"
         android:text="@string/submit"
