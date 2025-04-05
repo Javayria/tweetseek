@@ -32,23 +32,17 @@ def formSubmit():
     expertResponse = ExpertResponses()
     formResponseDTO = FormResponseDTO()
     
-    #need to call write to temp image file
-    # image = generateTempImageFile(requestData.base64Image)
-    
-    imageAnalysisResponse = imageExpert.analyze_image(requestData.base64Image)
-    
-    if(imageAnalysisResponse):
-        expertResponse.GeminiResponse = imageAnalysisResponse
-    
-    #checks for audioFile in request files
+   
 
-    audioFilePath = generateTempAudioFile(requestData.base64Audio)
-    audioAnalysisResponse = audioExpert.analyze_audio(audioFilePath)
-            
-    if(audioAnalysisResponse):
-        expertResponse.AudioResponse = audioAnalysisResponse
+    if requestData.base64Image:
+       expertResponse.GeminiResponse = imageExpert.analyze_image(requestData.base64Image)
     
-    cleanup() #remove temp_directory
+    
+    if(requestData.base64Audio):
+        audioFilePath = generateTempAudioFile(requestData.base64Audio)
+        expertResponse.AudioResponse =  audioExpert.analyze_audio(audioFilePath)
+        cleanup()
+            
 
     #for now just go with gemini's response,TODO: implement weightings for expert findings, for more info on why we need to parse the response string look at geminiClass
     birdName = parse_birdName_string(expertResponse.GeminiResponse)
