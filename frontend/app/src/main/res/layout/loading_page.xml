@@ -11,16 +11,21 @@
     android:background="@drawable/patternedblue_bg_"
     tools:context=".LoadingActivity">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"/>
+    <ImageView
+        android:id="@+id/loadingGif"
+        android:layout_width="300dp"
+        android:layout_height="170dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:focusable="false"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Identifying bird..."
+        android:layout_marginTop="0dp"
+        android:text="identifying bird..."
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:padding="10dp"
         android:fontFamily="monospace"
@@ -30,7 +35,7 @@
         android:id="@+id/cancelButton"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/light_blue"
         android:fontFamily="monospace"
         android:text="Cancel"

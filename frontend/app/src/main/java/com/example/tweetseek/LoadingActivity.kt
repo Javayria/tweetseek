@@ -4,10 +4,11 @@ import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import android.os.Bundle
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.example.tweetseek.databinding.LoadingPageBinding
 import com.example.tweetseek.identification.IdentificationManager
-import com.example.tweetseek.identification.IdentificationResult
-import com.example.tweetseek.identification.RequestData
+import com.example.tweetseek.activity.*
+import com.example.tweetseek.model.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
@@ -15,16 +16,22 @@ import kotlinx.coroutines.delay
 
 class LoadingActivity : AppCompatActivity() {
     private lateinit var binding: LoadingPageBinding
-    private val min_loading_time = 2000L // minimum time spent on loading screen
+    private val min_loading_time = 6000L // minimum time spent on loading screen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoadingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Load GIF into ImageView
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.loading_bird) // Replace with your GIF resource
+            .into(binding.loadingGif)
+
         // Cancel button click handler
         binding.cancelButton.setOnClickListener {
-            val intent = Intent(this, HomePage::class.java).apply {
+            val intent = Intent(this, HomePageActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             }
             startActivity(intent)
@@ -60,7 +67,7 @@ class LoadingActivity : AppCompatActivity() {
         }
     }
 
-    private suspend fun fetchIdentification(requestData: RequestData): IdentificationResult? {
+    private suspend fun fetchIdentification(requestData: RequestData): IdentificationResultData? {
         return try {
             IdentificationManager(requestData).submitIdentificationRequest()
         } catch (e: Exception) {

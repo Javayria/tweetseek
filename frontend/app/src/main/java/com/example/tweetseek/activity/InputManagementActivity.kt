@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.tweetseek.LoadingActivity
 import com.example.tweetseek.databinding.InputManagementBinding
 import com.example.tweetseek.identification.*
 import com.example.tweetseek.model.RequestData
