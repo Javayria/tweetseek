@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cloudy_bg"
+    android:background="@drawable/patternedblue_bg_"
     tools:context=".activity.RegisterActivity">
 
     <ImageButton
@@ -67,7 +67,7 @@
             android:layout_marginTop="40dp"
             android:scaleType="centerCrop"
             android:gravity="center"
-            android:src="@drawable/up_red"
+            android:src="@drawable/up_white"
             />
 
         <TextView
@@ -78,7 +78,7 @@
             android:textSize="30dp"
             android:textStyle="bold"
             android:text="share"
-            android:textColor="@color/red"
+            android:textColor="@color/white"
             android:fontFamily="monospace"
             android:gravity="center" />
 
