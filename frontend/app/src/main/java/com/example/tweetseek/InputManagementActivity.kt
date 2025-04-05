@@ -112,27 +112,14 @@ class InputManagementActivity : AppCompatActivity() {
             binding.locationDropdown.text.toString()
         )
 
-        lifecycleScope.launch {
-            try {
-                IdentificationManager(requestData).submitIdentificationRequest()?.let { result ->
-                    startActivity(Intent(this@InputManagementActivity, ResultActivity::class.java).apply {
-                        putExtra("bird_name", result.birdName)
-                        putExtra("bird_image", result.birdImage)
-                        putExtra("bird_expert", result.expert)
-                    })
-                } ?: Toast.makeText(
-                    this@InputManagementActivity,
-                    "Identification failed",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } catch (e: Exception) {
-                Toast.makeText(
-                    this@InputManagementActivity,
-                    "Error: ${e.localizedMessage}",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
+        // launch LoadingActivity with request data
+        startActivity(Intent(this, LoadingActivity::class.java).apply {
+            putExtra("imageFile", requestData.imageFile)
+            putExtra("audioFile", requestData.audioFile)
+            putExtra("size", requestData.size)
+            putExtra("color", requestData.color)
+            putExtra("location", requestData.location)
+        })
     }
 
     private fun uriToBase64(uri: Uri?): String {
