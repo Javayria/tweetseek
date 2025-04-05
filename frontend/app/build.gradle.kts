@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.google.firebase:firebase-dataconnect:16.0.0-beta03")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.3")

@@ -1,4 +1,4 @@
-package com.example.tweetseek
+package com.example.tweetseek.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.tweetseek.databinding.InputManagementBinding
 import com.example.tweetseek.identification.*
+import com.example.tweetseek.models.RequestData
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -74,10 +75,10 @@ class InputManagementActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                IdentificationManager(requestData).identifyBird()?.let { result ->
+                IdentificationManager(requestData).submitIdentificationRequest()?.let { result ->
                     startActivity(Intent(this@InputManagementActivity, ResultActivity::class.java).apply {
                         putExtra("bird_name", result.birdName)
-                        putExtra("bird_image", result.image)
+                        putExtra("bird_image", result.birdImage)
                         putExtra("bird_expert", result.expert)
                     })
                 } ?: Toast.makeText(

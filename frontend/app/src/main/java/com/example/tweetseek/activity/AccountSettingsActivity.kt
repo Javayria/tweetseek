@@ -1,5 +1,6 @@
-package com.example.tweetseek
+package com.example.tweetseek.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
@@ -50,6 +51,8 @@ class AccountSettingsActivity : AppCompatActivity() {
 
         binding.signOutButton.setOnClickListener {
             auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

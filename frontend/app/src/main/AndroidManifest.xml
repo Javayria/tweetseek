@@ -14,15 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tweetseek"
         tools:targetApi="31" >
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".HomePage" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".InputManagementActivity" />
-        <activity android:name=".ResultActivity" />
-        <activity android:name=".AccountSettingsActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.HomePageActivity" />
+        <activity android:name=".activity.RegisterActivity" />
+        <activity android:name=".activity.ResultActivity" />
+        <activity android:name=".activity.InputManagementActivity" />
+        <activity android:name=".activity.IdentificationHistoryActivity" />
+        <activity android:name=".activity.AccountSettingsActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Tweetseek.NoActionBar" >
             <intent-filter>

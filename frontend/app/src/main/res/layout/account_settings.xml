@@ -8,7 +8,7 @@
     android:background="@drawable/login_bg"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".AccountSettingsActivity">
+    tools:context=".activity.AccountSettingsActivity">
 
     <!-- Email Display -->
     <TextView
