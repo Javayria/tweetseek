@@ -22,6 +22,15 @@ class LoadingActivity : AppCompatActivity() {
         binding = LoadingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Cancel button click handler
+        binding.cancelButton.setOnClickListener {
+            val intent = Intent(this, HomePage::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(intent)
+            finish()
+        }
+
         val requestData = RequestData(
             imageFile = intent.getStringExtra("imageFile") ?: "",
             audioFile = intent.getStringExtra("audioFile") ?: "",

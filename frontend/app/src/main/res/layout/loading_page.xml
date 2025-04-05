@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     android:background="@drawable/patternedblue_bg_"
@@ -22,4 +25,17 @@
         android:padding="10dp"
         android:fontFamily="monospace"
         />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="monospace"
+        android:text="Cancel"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:cornerRadius="10dp" />
+
 </LinearLayout>
