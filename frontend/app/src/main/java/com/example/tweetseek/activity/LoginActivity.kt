@@ -8,6 +8,7 @@ import android.widget.Toast
 import com.example.tweetseek.databinding.LoginPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.OAuthProvider
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity()  {
     private lateinit var binding: LoginPageBinding
@@ -54,11 +55,7 @@ class LoginActivity : AppCompatActivity()  {
             if (pendingResultTask != null) {
                 pendingResultTask
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, HomePageActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                        })
-                        finish()
+                        handleAuthSuccess()
                     }
                     .addOnFailureListener {
                         Toast.makeText(this, it.localizedMessage ?: "Authentication failed", Toast.LENGTH_SHORT).show()
@@ -66,11 +63,7 @@ class LoginActivity : AppCompatActivity()  {
             } else {
                 auth.startActivityForSignInWithProvider(this, provider.build())
                     .addOnSuccessListener {
-                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, HomePageActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                        })
-                        finish()
+                        handleAuthSuccess()
                     }
                     .addOnFailureListener {
                         Toast.makeText(this, it.localizedMessage ?: "Authentication failed", Toast.LENGTH_SHORT).show()
@@ -81,7 +74,6 @@ class LoginActivity : AppCompatActivity()  {
 
     /**Helper function to contact Firebase Auth to get authentification result **/
     private fun authenticateUser(username:String, password:String) {
-
         auth.signInWithEmailAndPassword(username, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -95,5 +87,24 @@ class LoginActivity : AppCompatActivity()  {
                     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun handleAuthSuccess() {
+        val user = auth.currentUser
+        val db = FirebaseFirestore.getInstance()
+        user?.uid?.let { uid ->
+            val userDocRef = db.collection("Users").document(uid)
+            userDocRef.get().addOnSuccessListener { document ->
+                if (!document.exists()) {
+                    val userData = hashMapOf("uid" to uid)
+                    userDocRef.set(userData)
+                }
+            }
+        }
+        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, HomePageActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        })
+        finish()
     }
 }
