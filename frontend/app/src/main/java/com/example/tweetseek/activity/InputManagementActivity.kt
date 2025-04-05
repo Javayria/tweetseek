@@ -1,6 +1,8 @@
 package com.example.tweetseek.activity
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.util.Base64
@@ -9,10 +11,15 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.GetContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.tweetseek.LoadingActivity
+import com.example.tweetseek.R
 import com.example.tweetseek.databinding.InputManagementBinding
 import com.example.tweetseek.identification.*
 import com.example.tweetseek.model.RequestData
+import com.google.android.material.button.MaterialButton
+import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -25,7 +32,23 @@ class InputManagementActivity : AppCompatActivity() {
 
     //launchers
     private val imgLauncher = registerForActivityResult(GetContent()) { uri ->
-        base64Image = uriToBase64(uri)
+        if (uri != null) {
+            base64Image = uriToBase64(uri)
+            // update button appearance after upload
+            binding.imgUpload.apply {
+                backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(context, R.color.yellow))
+                text = "@string/image_uploaded"
+                setTextColor(ContextCompat.getColor(context, R.color.white))
+            }
+        } else {
+            binding.imgUpload.apply {
+                backgroundTintList = ColorStateList.valueOf(
+                    ContextCompat.getColor(context, R.color.white))
+                text = getString(R.string.upload_image)
+                setTextColor(ContextCompat.getColor(context, R.color.blue))
+            }
+        }
     }
     private val audioLauncher = registerForActivityResult(GetContent()) { uri ->
         base64Audio = uriToBase64(uri)
@@ -113,27 +136,14 @@ class InputManagementActivity : AppCompatActivity() {
             binding.locationDropdown.text.toString()
         )
 
-        lifecycleScope.launch {
-            try {
-                IdentificationManager(requestData).submitIdentificationRequest()?.let { result ->
-                    startActivity(Intent(this@InputManagementActivity, ResultActivity::class.java).apply {
-                        putExtra("bird_name", result.birdName)
-                        putExtra("bird_image", result.birdImage)
-                        putExtra("bird_expert", result.expert)
-                    })
-                } ?: Toast.makeText(
-                    this@InputManagementActivity,
-                    "Identification failed",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } catch (e: Exception) {
-                Toast.makeText(
-                    this@InputManagementActivity,
-                    "Error: ${e.localizedMessage}",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
+        // launch LoadingActivity with request data
+        startActivity(Intent(this, LoadingActivity::class.java).apply {
+            putExtra("imageFile", requestData.imageFile)
+            putExtra("audioFile", requestData.audioFile)
+            putExtra("size", requestData.size)
+            putExtra("color", requestData.color)
+            putExtra("location", requestData.location)
+        })
     }
 
     private fun uriToBase64(uri: Uri?): String {

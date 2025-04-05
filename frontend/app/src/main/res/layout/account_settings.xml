@@ -9,18 +9,18 @@
     android:gravity="center"
     tools:context=".activity.AccountSettingsActivity">
 
+    <!-- Exit (Check) Button -->
     <ImageButton
         android:id="@+id/exitButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="25dp"
         android:scaleType="centerCrop"
         android:src="@drawable/check_red"
-        android:background="?attr/selectableItemBackgroundBorderless"
+        android:background="?attr/selectableItemBackgroundBorderless" />
 
-        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,6 +43,7 @@
                 android:gravity="center"
                 android:padding="24dp"
                 android:background="@drawable/register_box">
+
                 <!-- Title -->
                 <TextView
                     android:id="@+id/welcomeText"
@@ -53,6 +54,7 @@
                     android:textColor="@color/red"
                     android:textSize="25sp"
                     android:textStyle="bold" />
+
                 <!-- Email Display -->
                 <TextView
                     android:id="@+id/emailText"
@@ -100,7 +102,7 @@
                 <Button
                     android:id="@+id/deleteAccountButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp"
+                    android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="@color/light_green"
                     android:fontFamily="monospace"
@@ -114,7 +116,7 @@
                 <Button
                     android:id="@+id/signOutButton"
                     android:layout_width="200dp"
-                    android:layout_height="45dp"
+                    android:layout_height="48dp"
                     android:layout_marginTop="1dp"
                     android:backgroundTint="@color/light_green"
                     android:fontFamily="monospace"
