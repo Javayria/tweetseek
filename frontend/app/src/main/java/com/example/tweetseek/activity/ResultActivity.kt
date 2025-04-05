@@ -28,7 +28,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //retrieve all data from the intent
-        birdName = intent.getStringExtra("bird_name")
+        val birdName = intent.getStringExtra("bird_name")
         val birdImage = intent.getStringExtra("bird_image")
         val birdExpert = intent.getStringExtra("bird_expert")
         val funFact = intent.getStringExtra("funFact")
