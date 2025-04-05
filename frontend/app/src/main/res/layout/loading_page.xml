@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/patternedblue_bg_"
+    android:background="@drawable/blue_bg"
     tools:context=".LoadingActivity">
 
     <ImageView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/light_blue"
+        android:backgroundTint="@color/white"
         android:fontFamily="monospace"
         android:text="Cancel"
         android:textColor="@color/blue"

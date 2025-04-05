@@ -17,6 +17,7 @@
     <string name="bird_information">BIRD INFORMATION</string>
     <string name="upload_audio">Upload Audio</string>
     <string name="upload_image">Upload Image</string>
+    <string name="image_uploaded">Image Uploaded</string>
     <string name="input_title">bird identification</string>
     <string name="back">Back</string>
     <string name="next">Next</string>
@@ -30,4 +31,6 @@
     <string name="identification_history">Identification History</string>
     <string name="bird_name">Bird Name</string>
     <string name="bird_image" />
+
+
 </resources>
