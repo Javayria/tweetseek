@@ -40,12 +40,13 @@ class InputManagementActivity : AppCompatActivity() {
         //setup UI elements
         setupDropdowns()
         setupClickListeners()
+        checkSubmitConditions()
     }
 
     private fun setupDropdowns() {
         val sizes = listOf("Small", "Medium", "Large")
         val colors = listOf("Red", "Blue", "Brown", "Black", "White")
-        val locations = listOf("Forest", "Desert")
+        val locations = listOf("Forest", "Wetlands", "Meadow", "Urban", "Desert")
 
         binding.sizeDropdown.setAdapter(createAdapter(sizes))
         binding.colorDropdown.setAdapter(createAdapter(colors))
@@ -63,7 +64,45 @@ class InputManagementActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkSubmitConditions(): Boolean {
+        val containsImage = !base64Image.isNullOrEmpty()
+        val containsAudio = !base64Audio.isNullOrEmpty()
+
+        val sizeSelected = binding.sizeDropdown.text.isNotEmpty()
+        val colorSelected = binding.colorDropdown.text.isNotEmpty()
+        val locationSelected = binding.locationDropdown.text.isNotEmpty()
+
+
+        val partialSurvey = sizeSelected || colorSelected || locationSelected
+        val completeSurvey = sizeSelected && colorSelected && locationSelected
+
+        val canSubmit = (containsImage || containsAudio || completeSurvey) && (!partialSurvey || completeSurvey)
+        return canSubmit
+    }
+
     private fun handleSubmit() {
+
+        if (!checkSubmitConditions()) {
+            val hasPartialSurvey = binding.sizeDropdown.text.isNotEmpty() ||
+                    binding.colorDropdown.text.isNotEmpty() ||
+                    binding.locationDropdown.text.isNotEmpty()
+
+            if (hasPartialSurvey) {
+                Toast.makeText(
+                    this,
+                    "Please provide inputs for all survey fields",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Please provide at least one input (image, audio, or complete survey) to identify the bird",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            return
+        }
+
         val requestData = RequestData(
             base64Image ?: "",
             base64Audio ?: "",
