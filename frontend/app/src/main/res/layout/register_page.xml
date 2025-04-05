@@ -1,91 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/login_bg"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
     tools:context=".activity.RegisterActivity">
 
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/backLogButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="25dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back_red"
+        android:background="?attr/selectableItemBackgroundBorderless" />
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        app:cardCornerRadius="50dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="#B3FFFFFF"
-        app:cardPreventCornerOverlap="true">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@drawable/register_box">
+            android:layout_margin="30dp"
+            app:cardCornerRadius="50dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="#B3FFFFFF"
+            app:cardPreventCornerOverlap="true">
 
-            <!-- Title -->
-            <TextView
-                android:id="@+id/welcomeText"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:text="@string/create_an_account"
-                android:textColor="@color/red"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:background="@drawable/register_box">
 
-            <!-- Username Input -->
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="@dimen/button_width_m"
-                android:layout_height="50dp"
-                android:layout_marginTop="30dp"
+                    <!-- Title -->
+                    <TextView
+                        android:id="@+id/welcomeText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:text="@string/create_an_account"
+                        android:textColor="@color/red"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
 
-                android:backgroundTint="@color/black"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                    <!-- Username Input -->
+                    <EditText
+                        android:id="@+id/username"
+                        android:layout_width="@dimen/button_width_m"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="30dp"
 
-                android:fontFamily="monospace"
-                android:hint="username"
-                android:padding="8dp"
-                />
+                        android:backgroundTint="@color/black"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
 
-            <!-- Password Input -->
-            <EditText
-                android:id="@+id/password"
-                android:layout_width="@dimen/button_width_m"
-                android:layout_height="50dp"
-                android:layout_marginTop="@dimen/margin_between"
+                        android:fontFamily="monospace"
+                        android:hint="username"
+                        android:padding="8dp"
+                        />
 
-                android:backgroundTint="@color/black"
-                android:textColor="@color/black"
-                android:textColorHint="@color/black"
+                    <!-- Password Input -->
+                    <EditText
+                        android:id="@+id/password"
+                        android:layout_width="@dimen/button_width_m"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="@dimen/margin_between"
 
-                android:fontFamily="monospace"
-                android:hint="password"
+                        android:backgroundTint="@color/black"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
 
-                android:padding="8dp"
-                />
+                        android:fontFamily="monospace"
+                        android:hint="password"
 
-            <Button
-                android:id="@+id/registerButton"
-                android:layout_width="wrap_content"
-                android:layout_height="65dp"
-                android:layout_gravity=""
-                android:layout_marginTop="10dp"
-                android:backgroundTint="@color/red"
-                android:fontFamily="monospace"
-                android:text="register"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                app:cornerRadius="10dp" />
+                        android:padding="8dp"
+                        />
 
+                    <Button
+                        android:id="@+id/registerButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="65dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="@color/red"
+                        android:fontFamily="monospace"
+                        android:text="register"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        app:cornerRadius="10dp" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+</RelativeLayout>
