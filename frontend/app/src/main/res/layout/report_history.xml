@@ -7,7 +7,7 @@
     android:layout_margin="8dp"
     card_view:cardCornerRadius="16dp"
     card_view:cardElevation="6dp"
-    card_view:cardBackgroundColor="@android:color/white">
+    card_view:cardBackgroundColor="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,9 +32,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Bird Name"
-            android:textColor="@color/red"
+            android:textAllCaps="true"
+            android:textColor="@color/blue"
             android:fontFamily="monospace"
             android:textStyle="bold"
-            android:textSize="18sp"/>
+            android:textSize="15sp"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
