@@ -3,7 +3,7 @@ from flask import (Blueprint, jsonify, request, current_app)
 from models.DTOs.expertResponses import ExpertResponses
 from models.DTOs.formResponseDTO import FormResponseDTO
 from models.Requests.formSubmissionRequest import FormSubmissionRequest
-from utils  import (process_audio, cleanup, get_new_image_base64, parse_birdName_string, generateTempImageFile,generateTempAudioFile)
+from utils  import (cleanup, get_new_image_base64, parse_birdName_string, generateTempAudioFile)
 
 
 user_bp = Blueprint('user', __name__)
@@ -61,11 +61,12 @@ def formSubmit():
 
     try:
         #incase encoding the base64 image throws an error
-        base64Image = get_new_image_base64(expertResponse.GeminiResponse)
+        base64Image, imageFound = get_new_image_base64(expertResponse.GeminiResponse)
     except Exception as ex:
         print(f"Error encoding image: {ex}")
 
     formResponseDTO.birdImage = base64Image
+    formResponseDTO.imageFound = imageFound
     
     return jsonify(
         success = True,

@@ -22,46 +22,6 @@ def allowed_file(filename, filetype = "image"):
         return False
 
 
-
-   
-
-# need to return image and call Gemini Expert with returned image
-def generateTempImageFile(b64Image):
-    # fileExtension_B64String = b64Image.split(",") #data in format: data:image/png;base64,b64encodedstring
-
-
-    imgData = base64.b64decode(b64Image) #decode b64 string
-    file_extension = ".jpg" # if (fileExtension_B64String[0] == "data:image/jpg;base64") else ".png" #need correct file extension
-
-    
-
-    #for more info on converting b64 to image file: https://stackoverflow.com/questions/16214190/how-to-convert-base64-string-to-image
-    #opens the temp file and writes to it in binary:
-     
-    #combine with Amos's code for saving file to temp storage
-    temp_save_path = os.path.join(TEMP_UPLOAD_FOLDER, fileName)
-    
-    fileName = "uploadedBirdImageTemp" + file_extension #fileName must have correct extension use Mime type attribute
-
-    filePath = os.path.join(temp_save_path,fileName)
-
-    with open(fileName,'wb') as f:
-        f.write(imgData)
-    
-   
-
-    fileName.save(temp_save_path) #save image file to temp folder
-
-    # Read the file stream into a BytesIO object
-    file_stream = io.BytesIO(fileName.read())
-
-    file_stream.seek(0)     #moves pointer back to start of the BytestIO stream
-
-    #reads image data and prepares it as an image object
-    form_image = Image.open(file_stream) 
-
-    return form_image
-
 def generateTempAudioFile(b64Audio):
     audioData = base64.b64decode(b64Audio)
 
@@ -76,16 +36,7 @@ def generateTempAudioFile(b64Audio):
 
     return temp_save_path
 
-# audioFile = request.files["audioFile"]
-def process_audio(audioFile):
-    #if file has dangerous characters, sanitize it 
-    safe_filename = secure_filename(audioFile.filename)
-    #create a temporary server side path for the audio file 
-    temp_save_path = os.path.join(TEMP_UPLOAD_FOLDER, safe_filename)
-    #writes the uploaded data to a temporary file on disk, creating a path BirdNET can use.
-    audioFile.save(temp_save_path)
-    return temp_save_path
-    
+  
 def cleanup():
     #deletes temporary file
     try:
@@ -116,7 +67,6 @@ def get_new_image_base64(birdName):
        
     #Return base 64 encoding of image, using imageUrl 
     try:
-        print(image_url)
         imageResponse = requests.get(image_url)
 
         #if imageUrl rejects request or for some reason there is a status other than the 200s
