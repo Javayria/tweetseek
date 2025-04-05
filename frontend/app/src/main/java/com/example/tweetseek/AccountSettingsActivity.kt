@@ -50,8 +50,12 @@ class AccountSettingsActivity : AppCompatActivity() {
             }
         }
 
+        //sign out goes to the login page
         binding.signOutButton.setOnClickListener {
             auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
             finish()
         }
 
