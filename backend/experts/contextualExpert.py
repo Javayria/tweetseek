@@ -37,5 +37,28 @@ class ContextualExpert():
 
     def analyze_contextual_data(self, size, color, location):
         key = BirdContext(size, color, location)
-        return self.bird_map.get(key, None)
+        
+        if key in self.bird_map:
+            return self.bird_map.get(key, None)
+        
+        best_match = None 
+        best_score = 0
+
+        for bird_context, bird_name in self.bird_map.items():
+            score = 0
+            # size is best indicator
+            if size and bird_context.size == size:
+                score += 3
+            # colour is better indicator of match than location
+            if color and bird_context.color == color:
+                score += 2
+            if location and bird_context.location == location:
+                score += 1
+
+            #could change it to equal, if we want the furthest partially matched key in the map
+            if score > best_score:
+                best_score = score
+                best_match = bird_name
+
+        return best_match
 
