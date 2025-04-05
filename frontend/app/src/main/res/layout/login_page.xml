@@ -53,8 +53,7 @@
         android:hint="password"
         android:inputType="textPassword"
 
-        android:padding="8dp"
-         />
+        android:padding="8dp" />
 
     <!-- Login Button -->
     <Button
@@ -82,4 +81,19 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:cornerRadius="10dp" />
+
+    <!-- Twitter Login Button -->
+    <Button
+        android:id="@+id/twitterLoginButton"
+        android:layout_width="@dimen/button_width_m"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#1DA1F2"
+        android:fontFamily="monospace"
+        android:text="Login with X"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:cornerRadius="10dp" />
+
 </LinearLayout>
