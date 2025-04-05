@@ -43,7 +43,7 @@ def cleanup():
         # os.remove(temp_save_path) instead of removing a path remove the entire directory
         shutil.rmtree(TEMP_UPLOAD_FOLDER) #remove entire temp directory and any file stored in it
     except OSError as e:
-        print(F"Error: {e.strerror}")
+        print(F"Non-blocking cleanup error, no temp directory created: {e.strerror}")
 
     
 def get_new_image_base64(birdName):
