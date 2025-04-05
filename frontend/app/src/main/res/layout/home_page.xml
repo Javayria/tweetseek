@@ -58,11 +58,13 @@
 
     <ImageButton
         android:id="@+id/settingsButton"
-        android:contentDescription="Settings"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="end"
-        android:layout_marginTop="50dp"
-        android:background="@null"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="25dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Settings"
+        android:scaleType="centerCrop"
         app:srcCompat="@drawable/settings" />
 </LinearLayout>

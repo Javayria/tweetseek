@@ -11,14 +11,16 @@
 
     <ImageButton
         android:id="@+id/exitButton"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="25dp"
         android:scaleType="centerCrop"
         android:src="@drawable/check_red"
-    />
+        android:background="?attr/selectableItemBackgroundBorderless"
+
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
