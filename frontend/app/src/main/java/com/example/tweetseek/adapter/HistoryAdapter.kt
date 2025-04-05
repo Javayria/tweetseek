@@ -8,10 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.tweetseek.R
-import com.example.tweetseek.models.BirdReport
+import com.example.tweetseek.model.BirdReportData
 
 // Connects UI -> Data
-class HistoryAdapter(private val reports: List<BirdReport>) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class HistoryAdapter(
+    private val reports: List<BirdReportData>,
+    private val clickListener: (BirdReportData) -> Unit
+) : RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     // Hold reference to components in layout
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -34,6 +37,10 @@ class HistoryAdapter(private val reports: List<BirdReport>) : RecyclerView.Adapt
             .load(report.imageUrl)
             .placeholder(android.R.color.darker_gray)
             .into(holder.birdImage)
+
+        holder.itemView.setOnClickListener {
+            clickListener(report)
+        }
     }
 
     override fun getItemCount(): Int = reports.size

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.tweetseek.databinding.InputManagementBinding
 import com.example.tweetseek.identification.*
-import com.example.tweetseek.models.RequestData
+import com.example.tweetseek.model.RequestData
 import kotlinx.coroutines.launch
 import java.io.IOException
 
