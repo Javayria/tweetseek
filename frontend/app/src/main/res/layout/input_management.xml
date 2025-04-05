@@ -12,12 +12,13 @@
     <!-- Back Button -->
     <ImageButton
         android:id="@+id/buttonBack"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerCrop"
         android:src="@drawable/back"
+        android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteY="24dp" />

@@ -10,10 +10,10 @@
 
     <ImageButton
         android:id="@+id/exitButton"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="25dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerCrop"
@@ -33,6 +33,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginBottom="30dp" />
 
+        <!-- ID Result -->
         <TextView
             android:id="@+id/birdName"
             android:layout_width="wrap_content"
@@ -40,12 +41,13 @@
             android:textSize="40dp"
             android:textStyle="bold"
             android:textAllCaps="true"
-            android:textColor="@color/red"
+            android:textColor="@color/white"
             android:fontFamily="monospace"
             android:padding="8dp"
             android:gravity="center"
             />
 
+        <!-- Expert -->
         <TextView
             android:id="@+id/birdExpert"
             android:layout_width="wrap_content"
@@ -54,11 +56,12 @@
             android:layout_marginBottom="20dp"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="@color/red"
+            android:textColor="@color/light_blue"
             android:fontFamily="monospace"
             android:padding="8dp"
             android:gravity="center" />
 
+        <!-- Share Button -->
         <ImageButton
             android:id="@+id/uploadButton"
             android:layout_width="80dp"
@@ -69,18 +72,5 @@
             android:gravity="center"
             android:src="@drawable/up_white"
             />
-
-        <TextView
-            android:id="@+id/upload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:text="share"
-            android:textColor="@color/white"
-            android:fontFamily="monospace"
-            android:gravity="center" />
-
     </LinearLayout>
 </RelativeLayout>
