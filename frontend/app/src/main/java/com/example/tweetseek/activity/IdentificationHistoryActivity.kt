@@ -1,17 +1,13 @@
 package com.example.tweetseek.activity
 
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.tweetseek.R
 import com.example.tweetseek.databinding.IdentificationHistoryBinding
 import com.example.tweetseek.model.BirdReportData
 import com.example.tweetseek.adapter.HistoryAdapter
-import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -49,12 +45,12 @@ class IdentificationHistoryActivity : AppCompatActivity() {
                 putExtra("bird_name", report.birdName)
                 putExtra("bird_image", report.imageUrl)
                 putExtra("bird_expert", report.expert)
+                putExtra("funFact", report.funFact)
             }
             startActivity(intent)
         }
         binding.historyRecycler.layoutManager = GridLayoutManager(this, 2)
         binding.historyRecycler.adapter = adapter
-
     }
 
     // Setup next/prev buttons, back button
@@ -111,8 +107,9 @@ class IdentificationHistoryActivity : AppCompatActivity() {
                 val name = it.getString("birdName")
                 val imageUrl = it.getString("imagePath")
                 val expert = it.getString("expert") ?: "Unknown"
+                val funFact = it.getString("funFact") ?: "No fun fact available"
                 if (name != null && imageUrl != null)
-                    BirdReportData(imageUrl, name, expert)
+                    BirdReportData(imageUrl, name, expert, funFact)
                 else null
             }
         }

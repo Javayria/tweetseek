@@ -29,8 +29,8 @@ class IdentificationManager(private val requestData: RequestData) {
 
     suspend fun submitIdentificationRequest(): IdentificationResultData? = withContext(Dispatchers.IO) {
         val body = JSONObject().apply {
-            put("imageFile", requestData.imageFile)
-            put("audioFile", requestData.audioFile)
+            put("base64Image", requestData.imageFile)
+            put("base64Audio", requestData.audioFile)
             put("size", requestData.size)
             put("color", requestData.color)
             put("location", requestData.location)
@@ -38,23 +38,23 @@ class IdentificationManager(private val requestData: RequestData) {
 
         try {
           
-            //FOR NOW - RETURN A HARDCODED RESULT
-            val testResult = testResponse()
-            return@withContext testResult
+//            //FOR NOW - RETURN A HARDCODED RESULT
+//            val testResult = testResponse()
+//            return@withContext testResult
 
-             /*
-            val response = post("http://10.0.2.2:8000/submitForm", body.toString())
+            val response = post("http://10.0.2.2:8000/user/submitform", body.toString())
             Log.d("IdentificationManager", response)
             val result = parseResponse(response)
-             */
-             /*val downloadUrl = uploadImage(result.birdImage)
+            val downloadUrl = uploadImage(result.birdImage)
             val uid = auth.currentUser?.uid ?: throw Exception("User not authenticated")
 
             val reportId = UUID.randomUUID().toString()
             val reportData = mapOf(
                 "imagePath" to downloadUrl,
+                "audioFile" to requestData.audioFile,
                 "birdName" to result.birdName,
-                "expert" to result.expert
+                "expert" to result.expert,
+                "funFact" to result.funFact,
             )
 
             firestore.collection("Users")
@@ -65,8 +65,6 @@ class IdentificationManager(private val requestData: RequestData) {
                 .await()
 
             return@withContext result.copy(birdImage = downloadUrl)
-            */
-
         } catch (e: Exception) {
             Log.e("IdentificationManager", "Identification failed", e)
             null
@@ -101,11 +99,12 @@ class IdentificationManager(private val requestData: RequestData) {
 
     private fun parseResponse(jsonString: String): IdentificationResultData {
         val json = JSONObject(jsonString)
+        val formResponse = json.getJSONObject("formResponse")
         return IdentificationResultData(
-            birdImage = json.getString("birdImage"),
-            birdName = json.getString("birdName"),
-            expert = json.getString("expert"),
-            funFact = json.getString("funFact")
+            birdImage = formResponse.getString("birdImage"),
+            birdName = formResponse.getString("birdName"),
+            expert = formResponse.getString("expert"),
+            funFact = formResponse.getString("funFact")
         )
     }
 
