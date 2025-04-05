@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#192212</color>
-    <color name="purple_500">#192212</color>
-    <color name="purple_700">#192212</color>
-    <color name="teal_200">#192212</color>
-    <color name="teal_700">#192212</color>
-    <color name="green">#192212</color>
-    <color name="grey">#192212</color>
+    <color name="purple_200">#EFF6EE</color>
+    <color name="purple_500">#EFF6EE</color>
+    <color name="purple_700">#EFF6EE</color>
+    <color name="teal_200">#EFF6EE</color>
+    <color name="teal_700">#EFF6EE</color>
+    <color name="green">#EFF6EE</color>
+    <color name="grey">#EFF6EE</color>
     <!--tweetseek colourscheme -->
     <color name="red">#BA3535</color>
     <color name="white">#EFF6EE</color>
