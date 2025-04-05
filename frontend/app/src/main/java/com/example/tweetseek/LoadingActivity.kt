@@ -23,10 +23,10 @@ class LoadingActivity : AppCompatActivity() {
         binding = LoadingPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Load GIF into ImageView
+        // load the GIF into the imageView component
         Glide.with(this)
             .asGif()
-            .load(R.drawable.loading_bird) // Replace with your GIF resource
+            .load(R.drawable.loading_bird)
             .into(binding.loadingGif)
 
         // Cancel button click handler
