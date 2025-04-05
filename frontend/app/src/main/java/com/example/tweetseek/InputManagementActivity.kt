@@ -61,6 +61,7 @@ class InputManagementActivity : AppCompatActivity() {
             imgUpload.setOnClickListener { imgLauncher.launch("image/*") }
             audioUpload.setOnClickListener { audioLauncher.launch("audio/*") }
             submitButton.setOnClickListener { handleSubmit() }
+            buttonBack.setOnClickListener { onBackPressedDispatcher.onBackPressed()}
         }
     }
 
