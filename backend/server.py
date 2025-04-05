@@ -6,6 +6,7 @@ from google import genai
 from dotenv import load_dotenv
 from experts.geminiExpert import GeminiExpert
 from experts.audioExpert import AudioExpert
+from experts.contextualExpert import ContextualExpert
 
 from routes import register_routes
 import os
@@ -25,11 +26,12 @@ google's gemini client, globally configure api key
 client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 geminiExpert = GeminiExpert(client=client)
 audioExpert = AudioExpert()
+contextualExpert = ContextualExpert()
 
 app = Flask(__name__)
 
 #register routes and inject dependencies
-register_routes(app,geminiExpert,audioExpert)
+register_routes(app,geminiExpert,audioExpert,contextualExpert)
 
 @app.route('/')
 def home():
