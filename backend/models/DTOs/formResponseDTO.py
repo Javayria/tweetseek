@@ -7,3 +7,4 @@ class FormResponseDTO:
     expert: Optional[str] = field(default = None)
     birdImage: Optional[str] = field(default = None)
     imageFound: bool = field(default=False)
+    funFact: Optional[str] = field(default = None)

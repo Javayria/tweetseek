@@ -3,14 +3,15 @@ import io
 from PIL import Image
 from werkzeug.utils import secure_filename
 import requests, base64
+import shutil
 
 #Create a temporary server side folder for audio file path
 TEMP_UPLOAD_FOLDER = "C:/temp_uploads"
 os.makedirs(TEMP_UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename, filetype = "image"):
-    ALLOWED_IMAGE_EXTENSIONS = {"png","jpg","jpeg"}
-    ALLOWED_AUDIO_EXTENSIONS = {"mp3", "wav", "ogg", "flac"}
+    ALLOWED_IMAGE_EXTENSIONS = {"png","jpg"}
+    ALLOWED_AUDIO_EXTENSIONS = {"mp3"} #only allow mp3
     _, ext = os.path.splitext(filename)
     ext = ext.lstrip('.').lower()
     if filetype == "image":
@@ -20,20 +21,62 @@ def allowed_file(filename, filetype = "image"):
     else:
         return False
 
-def process_file(imageFile):
-    #if file has dangerous characters, sanitize it 
-    # filename = secure_filename(imageFile.filename)
 
-    #essentially this code is used to process an uploaded image without saving it to a disk
+
+   
+
+# need to return image and call Gemini Expert with returned image
+def generateTempImageFile(b64Image):
+    # fileExtension_B64String = b64Image.split(",") #data in format: data:image/png;base64,b64encodedstring
+
+
+    imgData = base64.b64decode(b64Image) #decode b64 string
+    file_extension = ".jpg" # if (fileExtension_B64String[0] == "data:image/jpg;base64") else ".png" #need correct file extension
+
+    
+
+    #for more info on converting b64 to image file: https://stackoverflow.com/questions/16214190/how-to-convert-base64-string-to-image
+    #opens the temp file and writes to it in binary:
+     
+    #combine with Amos's code for saving file to temp storage
+    temp_save_path = os.path.join(TEMP_UPLOAD_FOLDER, fileName)
+    
+    fileName = "uploadedBirdImageTemp" + file_extension #fileName must have correct extension use Mime type attribute
+
+    filePath = os.path.join(temp_save_path,fileName)
+
+    with open(fileName,'wb') as f:
+        f.write(imgData)
+    
+   
+
+    fileName.save(temp_save_path) #save image file to temp folder
+
     # Read the file stream into a BytesIO object
-    file_stream = io.BytesIO(imageFile.read())
-    #moves pointer back to start of the BytestIO stream
-    file_stream.seek(0)
+    file_stream = io.BytesIO(fileName.read())
+
+    file_stream.seek(0)     #moves pointer back to start of the BytestIO stream
+
     #reads image data and prepares it as an image object
-    form_image = Image.open(file_stream)
+    form_image = Image.open(file_stream) 
 
     return form_image
 
+def generateTempAudioFile(b64Audio):
+    audioData = base64.b64decode(b64Audio)
+
+    fileName = "uploadedBirdAudio.mp3"
+
+    temp_save_path = os.path.join(TEMP_UPLOAD_FOLDER, fileName)
+   
+    # actual saving is done to file is done in open, dont need to run .save()
+    with open(temp_save_path,'wb') as f:
+        f.write(audioData)
+    
+
+    return temp_save_path
+
+# audioFile = request.files["audioFile"]
 def process_audio(audioFile):
     #if file has dangerous characters, sanitize it 
     safe_filename = secure_filename(audioFile.filename)
@@ -43,12 +86,13 @@ def process_audio(audioFile):
     audioFile.save(temp_save_path)
     return temp_save_path
     
-def cleanup(temp_save_path):
+def cleanup():
     #deletes temporary file
     try:
-        os.remove(temp_save_path)
-    except OSError:
-        pass 
+        # os.remove(temp_save_path) instead of removing a path remove the entire directory
+        shutil.rmtree(TEMP_UPLOAD_FOLDER) #remove entire temp directory and any file stored in it
+    except OSError as e:
+        print(F"Error: {e.strerror}")
 
     
 def get_new_image_base64(birdName):
@@ -57,7 +101,7 @@ def get_new_image_base64(birdName):
 
     imageFound = False
     #default imageURL hosted on postimg site
-    image_url = "https://i.postimg.cc/fW39L0bp/anonymous-Bird.jpg"
+    image_url = "https://i.postimg.cc/7ZJsjfNS/pngimg-com-birds-PNG108.png"
 
     params = {
         "q": birdName,
