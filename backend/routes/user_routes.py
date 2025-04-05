@@ -3,7 +3,7 @@ from flask import (Blueprint, jsonify, request, current_app)
 from models.DTOs.expertResponses import ExpertResponses
 from models.DTOs.formResponseDTO import FormResponseDTO
 from models.Requests.formSubmissionRequest import FormSubmissionRequest
-from utils  import (cleanup, get_new_image_base64, parse_birdName_string, generateTempAudioFile)
+from utils  import (cleanup, get_new_image_base64, generateTempAudioFile)
 
 
 user_bp = Blueprint('user', __name__)
@@ -20,6 +20,8 @@ def formSubmit():
     #access experts through app context
     imageExpert = current_app.config.get("IMAGE_EXPERT")
     audioExpert = current_app.config.get("AUDIO_EXPERT")
+    contextualExpert = current_app.config.get("CONTEXTUAL_EXPERT")
+
     #if any one of the experts are unavailable, form submission cannot be processed
  
     #formRequest will have type formSubmissionRequest
@@ -44,18 +46,35 @@ def formSubmit():
         cleanup()
             
 
-    #for now just go with gemini's response,TODO: implement weightings for expert findings, for more info on why we need to parse the response string look at geminiClass
-    birdName = parse_birdName_string(expertResponse.GeminiResponse)
+    if requestData.size and requestData.color and requestData.location:
+        expertResponse.ContextualResponse = contextualExpert.analyze_contextual_data(requestData.size,requestData.color,requestData.location)
+
+
+    #if geminiResponse go with gemini, if audioResponse and no gemini go with audio, if only contextual go with contextual
+    birdName = "Mystery Bird"
+
+    if(expertResponse.GeminiResponse):
+        birdName = expertResponse.GeminiResponse.replace("\n","")
+        formResponseDTO.expert = "gemini"
+
+    elif(expertResponse.AudioResponse):
+        birdName = expertResponse.AudioResponse
+        formResponseDTO.expert = "audio"
+
+    else:
+        birdName = expertResponse.ContextualResponse
+        formResponseDTO.expert = "contextual"
+
     
     #new form response
     formResponseDTO.birdName = birdName
-    formResponseDTO.expert = "gemini"
     formResponseDTO.funFact = imageExpert.fun_fact(birdName)
     
+    print("Expert Responses: ", expertResponse)
 
     try:
         #incase encoding the base64 image throws an error
-        base64Image, imageFound = get_new_image_base64(expertResponse.GeminiResponse)
+        base64Image, imageFound = get_new_image_base64(birdName.replace(" ","-")) #turns birdname with spaces into search param, through hyphens
     except Exception as ex:
         print(f"Error encoding image: {ex}")
 
@@ -66,5 +85,4 @@ def formSubmit():
         success = True,
         message = "Form Submit Successful",
         formResponse = asdict(formResponseDTO),
-        expertResponse = expertResponse
     )
