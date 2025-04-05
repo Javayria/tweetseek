@@ -29,6 +29,7 @@
             android:padding="24dp"
             android:background="@drawable/register_box">
 
+            <!-- Title -->
             <TextView
                 android:id="@+id/welcomeText"
                 android:layout_width="match_parent"
@@ -76,14 +77,14 @@
                 android:id="@+id/registerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="65dp"
+                android:layout_gravity=""
                 android:layout_marginTop="10dp"
                 android:backgroundTint="@color/red"
                 android:fontFamily="monospace"
                 android:text="register"
                 android:textColor="@color/white"
                 android:textSize="30sp"
-                app:cornerRadius="10dp"
-                android:layout_gravity=""/>
+                app:cornerRadius="10dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
