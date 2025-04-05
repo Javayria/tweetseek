@@ -2,6 +2,7 @@ package com.example.tweetseek.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -49,11 +50,22 @@ class AccountSettingsActivity : AppCompatActivity() {
             }
         }
 
+        //sign out goes to the login page
         binding.signOutButton.setOnClickListener {
             auth.signOut()
             val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
         }
+
+        //exit button goes to homepage
+        binding.exitButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, HomePageActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(intent)
+            finish()
+        })
     }
 }
