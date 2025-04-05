@@ -1,4 +1,4 @@
-package com.example.tweetseek
+package com.example.tweetseek.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -61,7 +61,7 @@ class AccountSettingsActivity : AppCompatActivity() {
 
         //exit button goes to homepage
         binding.exitButton.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this, HomePage::class.java).apply {
+            val intent = Intent(this, HomePageActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
             }
             startActivity(intent)

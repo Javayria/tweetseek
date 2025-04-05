@@ -2,6 +2,7 @@ package com.example.tweetseek.identification
 
 import android.util.Base64
 import android.util.Log
+import com.example.tweetseek.models.RequestData
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase

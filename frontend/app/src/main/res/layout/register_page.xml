@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".RegisterActivity">
+    tools:context=".activity.RegisterActivity">
 
 
     <androidx.cardview.widget.CardView
