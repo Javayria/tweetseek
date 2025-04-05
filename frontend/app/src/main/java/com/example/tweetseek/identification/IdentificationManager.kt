@@ -40,12 +40,12 @@ class IdentificationManager(private val requestData: RequestData) {
             val testResult = testResponse()
             return@withContext testResult
 
-             /*
+
             val response = post("http://10.0.2.2:8000/submitForm", body.toString())
             Log.d("IdentificationManager", response)
             val result = parseResponse(response)
-             */
-             /*val downloadUrl = uploadImage(result.birdImage)
+
+            val downloadUrl = uploadImage(result.birdImage)
             val uid = auth.currentUser?.uid ?: throw Exception("User not authenticated")
 
             val reportId = UUID.randomUUID().toString()
@@ -63,7 +63,7 @@ class IdentificationManager(private val requestData: RequestData) {
                 .await()
 
             return@withContext result.copy(birdImage = downloadUrl)
-            */
+
  
         } catch (e: Exception) {
             Log.e("IdentificationManager", "Identification failed", e)

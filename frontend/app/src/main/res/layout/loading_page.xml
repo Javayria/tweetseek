@@ -31,10 +31,10 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/light_blue"
         android:fontFamily="monospace"
         android:text="Cancel"
-        android:textColor="@color/white"
+        android:textColor="@color/blue"
         android:textSize="20sp"
         app:cornerRadius="10dp" />
 
