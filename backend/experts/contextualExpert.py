@@ -46,10 +46,12 @@ class ContextualExpert():
 
         for bird_context, bird_name in self.bird_map.items():
             score = 0
+            # size is best indicator
             if size and bird_context.size == size:
-                score += 1
+                score += 3
+            # colour is better indicator of match than location
             if color and bird_context.color == color:
-                score += 1
+                score += 2
             if location and bird_context.location == location:
                 score += 1
 
