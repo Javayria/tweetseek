@@ -15,16 +15,12 @@ class AudioExpert:
             min_conf=min_conf
         )
 
-        print(recording)
-
         recording.analyze()
         detections = recording.detections
 
         if(len(detections) == 0):
             print("Bird couldn't be detected through audio")
             return None
-
-        print(detections)
 
         highest_confidence = max(detections, key=lambda x: x["confidence"]) #returns the common_name of identification with the highest confidence level
         return highest_confidence["common_name"]
