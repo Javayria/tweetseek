@@ -61,6 +61,7 @@ class LoadingActivity : AppCompatActivity() {
                     putExtra("bird_name", it.birdName)
                     putExtra("bird_image", it.birdImage)
                     putExtra("bird_expert", it.expert)
+                    putExtra("funFact", it.funFact)
                 })
             }
             finish()
