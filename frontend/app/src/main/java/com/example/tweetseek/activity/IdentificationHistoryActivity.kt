@@ -66,21 +66,27 @@ class IdentificationHistoryActivity : AppCompatActivity() {
         lifecycleScope.launch {
             val uid = Firebase.auth.currentUser?.uid ?: return@launch
 
-            // Base query ordered by bird name
             val baseQuery = db.collection("Users")
                 .document(uid)
                 .collection("reports")
                 .orderBy("birdName")
                 .limit(pageSize.toLong())
 
-            // Determine if we're paginating forward or back
-            val query = if (next && currentPageStart != null) {
-                baseQuery.startAfter(currentPageStart!!)
+            val query = if (next) {
+                currentPageStart?.let { baseQuery.startAfter(it) } ?: baseQuery
             } else {
-                baseQuery
+                if (pageStack.size >= 2) {
+                    // pop current and get previous start
+                    pageStack.removeLast()
+                    val prevStart = pageStack.last()
+                    prevStart?.let { baseQuery.startAfter(it) } ?: baseQuery
+                } else {
+                    pageStack.clear()
+                    currentPageStart = null
+                    baseQuery
+                }
             }
 
-            // Fetch and handle results
             val docs = query.get().await().documents
             if (docs.isNotEmpty()) {
                 updatePaginationState(next, docs)
@@ -93,10 +99,8 @@ class IdentificationHistoryActivity : AppCompatActivity() {
     // Save or restore pagination state
     private fun updatePaginationState(next: Boolean, docs: List<DocumentSnapshot>) {
         if (next) {
-            pageStack.addLast(currentPageStart)
+            currentPageStart?.let { pageStack.addLast(it) }
             currentPageStart = docs.last()
-        } else if (pageStack.isNotEmpty()) {
-            currentPageStart = pageStack.removeLast()
         }
     }
 
