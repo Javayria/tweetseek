@@ -2,6 +2,7 @@ package com.example.tweetseek.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tweetseek.databinding.RegisterPageBinding
@@ -19,6 +20,15 @@ class RegisterActivity : AppCompatActivity()  {
 
         // Obtain Firebase instance
         auth = FirebaseAuth.getInstance()
+
+        // BackLog Button goes to login
+        binding.backLogButton.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, LoginActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            }
+            startActivity(intent)
+            finish()
+        })
 
         binding.registerButton.setOnClickListener {
             val username = binding.username.text.toString()
