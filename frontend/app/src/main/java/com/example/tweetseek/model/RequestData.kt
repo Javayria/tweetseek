@@ -1,4 +1,4 @@
-package com.example.tweetseek.models
+package com.example.tweetseek.model
 
 data class RequestData(
     val imageFile: String,

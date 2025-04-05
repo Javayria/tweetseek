@@ -1,4 +1,5 @@
 package com.example.tweetseek.activity
+
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Bitmap
@@ -9,6 +10,7 @@ import com.example.tweetseek.databinding.ResultPageBinding
 import android.util.Base64
 import android.util.Log
 import android.view.View
+import com.bumptech.glide.Glide
 
 class ResultActivity : AppCompatActivity() {
 
@@ -49,15 +51,22 @@ class ResultActivity : AppCompatActivity() {
         })
     }
 
-    private fun displayResults(name: String, imageBase64: String, expert: String) {
+    private fun displayResults(name: String, image: String, expert: String) {
         binding.apply {
             birdName.text = "BIRD: ${name.uppercase()}"
             birdExpert.text = "identified by: $expert"
 
             try {
-                Log.d("ResultActivity: imageBase64.length ", imageBase64.length.toString())
-                val decodedImage = convertStringToBitmap(cleanBase64String(imageBase64))
-                birdImage.setImageBitmap(decodedImage)
+                if (image.startsWith("http")) {
+                    Glide.with(this@ResultActivity)
+                        .load(image)
+                        .placeholder(android.R.color.darker_gray)
+                        .into(birdImage)
+                } else {
+                    Log.d("ResultActivity: imageBase64.length ", image.length.toString())
+                    val decodedImage = convertStringToBitmap(cleanBase64String(image))
+                    birdImage.setImageBitmap(decodedImage)
+                }
 
             } catch (e: Exception) {
                 Toast.makeText(this@ResultActivity, "Error loading image", Toast.LENGTH_SHORT).show()
@@ -65,6 +74,7 @@ class ResultActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun cleanBase64String(base64String: String): String {
         return if (base64String.startsWith("data:image/jpeg;base64")) {
             base64String.substringAfter(",")

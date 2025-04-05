@@ -1,11 +1,12 @@
 package com.example.tweetseek.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tweetseek.databinding.IdentificationHistoryBinding
-import com.example.tweetseek.models.BirdReport
+import com.example.tweetseek.model.BirdReportData
 import com.example.tweetseek.adapter.HistoryAdapter
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -20,7 +21,7 @@ class IdentificationHistoryActivity : AppCompatActivity() {
 
     private lateinit var binding: IdentificationHistoryBinding
     private lateinit var adapter: HistoryAdapter
-    private val reports = mutableListOf<BirdReport>()
+    private val reports = mutableListOf<BirdReportData>()
 
     private var currentPageStart: DocumentSnapshot? = null
     private val pageStack = ArrayDeque<DocumentSnapshot?>()
@@ -39,7 +40,14 @@ class IdentificationHistoryActivity : AppCompatActivity() {
 
     // Setup recycler view with grid layout and adapter
     private fun setupRecyclerView() {
-        adapter = HistoryAdapter(reports)
+        adapter = HistoryAdapter(reports) { report ->
+            val intent = Intent(this, ResultActivity::class.java).apply {
+                putExtra("bird_name", report.birdName)
+                putExtra("bird_image", report.imageUrl)
+                putExtra("bird_expert", report.expert)
+            }
+            startActivity(intent)
+        }
         binding.historyRecycler.layoutManager = GridLayoutManager(this, 2)
         binding.historyRecycler.adapter = adapter
     }
@@ -95,7 +103,10 @@ class IdentificationHistoryActivity : AppCompatActivity() {
             docs.mapNotNull {
                 val name = it.getString("birdName")
                 val imageUrl = it.getString("imagePath")
-                if (name != null && imageUrl != null) BirdReport(imageUrl, name) else null
+                val expert = it.getString("expert") ?: "Unknown"
+                if (name != null && imageUrl != null)
+                    BirdReportData(imageUrl, name, expert)
+                else null
             }
         }
 
