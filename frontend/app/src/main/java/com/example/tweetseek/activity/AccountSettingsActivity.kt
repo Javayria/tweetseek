@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tweetseek.databinding.AccountSettingsBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserInfo
 
 class AccountSettingsActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -25,7 +26,18 @@ class AccountSettingsActivity : AppCompatActivity() {
         val emailText: TextView = binding.emailText
         val newPasswordEditText: EditText = binding.newPasswordEditText
 
-        emailText.text = user?.email ?: "No email"
+        val providerId = user?.providerData?.lastOrNull()?.providerId
+
+        // Specific requirements for twitter authenticated users
+        if (providerId == "twitter.com") {
+            val twitterInfo: UserInfo? = user.providerData.find { it.providerId == "twitter.com" }
+            val displayName = twitterInfo?.displayName ?: "Twitter User"
+            emailText.text = displayName
+            binding.updatePasswordButton.visibility = View.GONE
+            newPasswordEditText.visibility = View.GONE
+        } else {
+            emailText.text = user?.email ?: "No email"
+        }
 
         binding.updatePasswordButton.setOnClickListener {
             val newPassword = newPasswordEditText.text.toString()
