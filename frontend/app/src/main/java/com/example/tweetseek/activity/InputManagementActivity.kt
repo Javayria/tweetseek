@@ -1,4 +1,4 @@
-package com.example.tweetseek
+package com.example.tweetseek.activity
 
 import android.content.Intent
 import android.net.Uri
@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.tweetseek.databinding.InputManagementBinding
 import com.example.tweetseek.identification.*
+import com.example.tweetseek.model.RequestData
 import kotlinx.coroutines.launch
 import java.io.IOException
 

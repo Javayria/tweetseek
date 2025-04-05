@@ -21,10 +21,13 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="sign_out">Sign out</string>
-    <string name="delete_account">Delete Account</string>
-    <string name="update_password">Update Password</string>
+    <string name="sign_out">sign out</string>
+    <string name="delete_account">delete account</string>
+    <string name="update_password">update password</string>
     <string name="new_password">new password</string>
     <string name="email_example_com">email@example.com</string>
     <string name="create_an_account">create an account</string>
+    <string name="identification_history">Identification History</string>
+    <string name="bird_name">Bird Name</string>
+    <string name="bird_image" />
 </resources>

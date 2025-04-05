@@ -10,7 +10,7 @@
 
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".LoginActivity">
+    tools:context=".activity.LoginActivity">
     <!-- Logo Input -->
     <ImageView
         android:id="@+id/login_logo"
@@ -32,6 +32,7 @@
         android:textColorHint="@color/black"
 
         android:fontFamily="monospace"
+        android:textSize="18sp"
         android:hint="username"
         android:padding="8dp"
         />
@@ -48,6 +49,7 @@
         android:textColorHint="@color/black"
 
         android:fontFamily="monospace"
+        android:textSize="18sp"
         android:hint="password"
         android:inputType="textPassword"
 
