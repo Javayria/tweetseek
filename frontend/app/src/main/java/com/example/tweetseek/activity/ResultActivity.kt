@@ -47,7 +47,7 @@ class ResultActivity : AppCompatActivity() {
                 showErrorAndFinish("Missing fun fact")
             }
             else -> {
-                displayResults(birdName, birdImage, birdExpert, funFact)
+                displayResults(birdName!!, birdImage, birdExpert, funFact)
             }
         }
 

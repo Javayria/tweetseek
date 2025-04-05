@@ -38,7 +38,7 @@ class InputManagementActivity : AppCompatActivity() {
             binding.imgUpload.apply {
                 backgroundTintList = ColorStateList.valueOf(
                     ContextCompat.getColor(context, R.color.yellow))
-                text = "@string/image_uploaded"
+                text = "Image Uploaded"
                 setTextColor(ContextCompat.getColor(context, R.color.white))
             }
         } else {
@@ -50,8 +50,13 @@ class InputManagementActivity : AppCompatActivity() {
             }
         }
     }
+
     private val audioLauncher = registerForActivityResult(GetContent()) { uri ->
-        base64Audio = uriToBase64(uri)
+        if (uri != null) {
+            base64Audio = uriToBase64(uri)
+        } else {
+            Log.d("AudioLauncher", "No audio selected or conversion failed.")
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

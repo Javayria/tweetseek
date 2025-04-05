@@ -15,7 +15,6 @@ submit form endpoint will take a FormSubmissionRequest object and return a FormR
 """
 @user_bp.route('/submitform', methods=['POST'])
 def formSubmit():
-    
     #experts are globally scoped within the routes module
     #access experts through app context
     imageExpert = current_app.config.get("IMAGE_EXPERT")
@@ -59,25 +58,25 @@ def formSubmit():
 
     elif(expertResponse.AudioResponse):
         birdName = expertResponse.AudioResponse
-        formResponseDTO.expert = "audio"
+        formResponseDTO.expert = "birdnet"
 
     else:
         birdName = expertResponse.ContextualResponse
-        formResponseDTO.expert = "contextual"
+        formResponseDTO.expert = "context tree"
 
     
     #new form response
     formResponseDTO.birdName = birdName
-    formResponseDTO.funFact = imageExpert.fun_fact(birdName)
+    formResponseDTO.funFact = imageExpert.fun_fact(birdName).replace("\n", "")
     
     print("Expert Responses: ", expertResponse)
-
+    base64Image = ""
+    imageFound = False
     try:
         #incase encoding the base64 image throws an error
         base64Image, imageFound = get_new_image_base64(birdName.replace(" ","-")) #turns birdname with spaces into search param, through hyphens
     except Exception as ex:
         print(f"Error encoding image: {ex}")
-
     formResponseDTO.birdImage = base64Image
     formResponseDTO.imageFound = imageFound
     
