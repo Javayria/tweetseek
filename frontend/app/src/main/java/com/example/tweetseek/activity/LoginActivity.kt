@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.tweetseek.databinding.LoginPageBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.OAuthProvider
 
 class LoginActivity : AppCompatActivity()  {
     private lateinit var binding: LoginPageBinding
@@ -41,6 +42,41 @@ class LoginActivity : AppCompatActivity()  {
             startActivity(intent)
             finish()
         })
+
+
+        /*
+            Login with X button which checks if there is a pending request
+            if there is it waits otherwise it attempts to login
+         */
+        binding.twitterLoginButton.setOnClickListener {
+            val provider = OAuthProvider.newBuilder("twitter.com")
+            val pendingResultTask = auth.pendingAuthResult
+            if (pendingResultTask != null) {
+                pendingResultTask
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, HomePageActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        })
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, it.localizedMessage ?: "Authentication failed", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                auth.startActivityForSignInWithProvider(this, provider.build())
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, HomePageActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        })
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, it.localizedMessage ?: "Authentication failed", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
     }
 
     /**Helper function to contact Firebase Auth to get authentification result **/

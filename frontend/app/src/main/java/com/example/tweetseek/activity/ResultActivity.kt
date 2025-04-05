@@ -11,10 +11,16 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
+import java.io.File
+import java.io.FileOutputStream
+import androidx.core.content.FileProvider
 
 class ResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ResultPageBinding
+    private var tweetImagePath: String? = null
+    private var birdName: String? = null
+    private var birdExpert: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +28,9 @@ class ResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //retrieve all data from the intent
-        val birdName = intent.getStringExtra("bird_name")
+        birdName = intent.getStringExtra("bird_name")
         val birdImage = intent.getStringExtra("bird_image")
-        val birdExpert = intent.getStringExtra("bird_expert")
+        birdExpert = intent.getStringExtra("bird_expert")
 
         when {
             birdName == null -> {
@@ -37,7 +43,7 @@ class ResultActivity : AppCompatActivity() {
                 showErrorAndFinish("Missing expert info")
             }
             else -> {
-                displayResults(birdName, birdImage, birdExpert)
+                displayResults(birdName!!, birdImage, birdExpert!!)
             }
         }
 
@@ -49,6 +55,11 @@ class ResultActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         })
+
+        // Upload button sends a tweet
+        binding.uploadButton.setOnClickListener {
+            shareTweet()
+        }
     }
 
     private fun displayResults(name: String, image: String, expert: String) {
@@ -66,6 +77,7 @@ class ResultActivity : AppCompatActivity() {
                     Log.d("ResultActivity: imageBase64.length ", image.length.toString())
                     val decodedImage = convertStringToBitmap(cleanBase64String(image))
                     birdImage.setImageBitmap(decodedImage)
+                    saveImageToCache(decodedImage)
                 }
 
             } catch (e: Exception) {
@@ -86,6 +98,52 @@ class ResultActivity : AppCompatActivity() {
     private fun convertStringToBitmap(base64Str: String): Bitmap? {
         val decodedString = Base64.decode(base64Str, Base64.DEFAULT)
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
+    }
+
+    // Save image file and store it's path
+    private fun saveImageToCache(bitmap: Bitmap?) {
+        if (bitmap == null) return
+        try {
+            val file = File(cacheDir, "shared_bird_image.jpg")
+            val out = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+            out.flush()
+            out.close()
+            tweetImagePath = file.absolutePath
+        } catch (e: Exception) {
+            Log.e("ResultActivity", "Failed to save image to cache: ${e.message}")
+        }
+    }
+
+    private fun shareTweet() {
+        val name = birdName ?: return
+        val expert = birdExpert ?: return
+        val tweetText = "Just identified a bird using TweetSeek! \nBird: ${name.uppercase()}\nExpert: $expert\n#Birdwatching #TweetSeekApp"
+
+        // Turn base64 image to File Object
+        val file = tweetImagePath?.let { File(it) } ?: return
+        // Obtain URI
+        val uri = FileProvider.getUriForFile(
+            this,
+            "${packageName}.provider",
+            file
+        )
+
+        // Create Intent to make tweet
+        val intent = Intent(Intent.ACTION_SEND).apply {
+            type = "image/jpeg"
+            putExtra(Intent.EXTRA_STREAM, uri)
+            putExtra(Intent.EXTRA_TEXT, tweetText)
+            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            setPackage("com.twitter.android")
+        }
+
+        // Attempt to tweet
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Twitter app not installed", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showErrorAndFinish(message: String) {
