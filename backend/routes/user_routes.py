@@ -2,7 +2,8 @@ from dataclasses import asdict
 from flask import (Blueprint, jsonify, request, current_app)
 from models.DTOs.expertResponses import ExpertResponses
 from models.DTOs.formResponseDTO import FormResponseDTO
-from utils  import (allowed_file, process_file,process_audio,cleanup, get_new_image_base64, parse_birdName_string)
+from models.Requests.formSubmissionRequest import FormSubmissionRequest
+from utils  import (cleanup, get_new_image_base64, parse_birdName_string, generateTempAudioFile)
 
 
 user_bp = Blueprint('user', __name__)
@@ -20,55 +21,42 @@ def formSubmit():
     imageExpert = current_app.config.get("IMAGE_EXPERT")
     audioExpert = current_app.config.get("AUDIO_EXPERT")
     #if any one of the experts are unavailable, form submission cannot be processed
+ 
+    #formRequest will have type formSubmissionRequest
 
-    if imageExpert is None:
-        return jsonify(success=False,message="Cannot process request at this time")
+    data = request.get_json()
 
-    if audioExpert is None:
-        return jsonify(success=False,message="Cannot process request at this time")
+    requestData = FormSubmissionRequest(**data) #unpacks a dictionary into keyword arguments
+
     #initally formResponseObject will have every expert's response as null
     expertResponse = ExpertResponses()
     formResponseDTO = FormResponseDTO()
-
-    #checks for imageFile in request files
-    if "imageFile" not in request.files:
-       return jsonify(success=False, message="No image file included")
     
-    imageFile = request.files["imageFile"]
-
-    if imageFile.filename == "":
-        return jsonify(success=False, message="No selected image file")
+    #need to call write to temp image file
+    # image = generateTempImageFile(requestData.base64Image)
     
-    if imageFile and allowed_file(imageFile.filename):
-        image = process_file(imageFile)
-        imageAnalysisResponse = imageExpert.analyze_image(image)
+    imageAnalysisResponse = imageExpert.analyze_image(requestData.base64Image)
     
     if(imageAnalysisResponse):
         expertResponse.GeminiResponse = imageAnalysisResponse
     
     #checks for audioFile in request files
-    if "audioFile" not in request.files:
-        return jsonify(success=False, message="No audio file included")
 
-    audioFile = request.files["audioFile"]
-
-    if audioFile.filename == "":
-        return jsonify(success=False, message="No selected audio file")
-
-    if audioFile and allowed_file(audioFile.filename, "audio"):
-        audio = process_audio(audioFile)
-        audioAnalysisResponse = audioExpert.analyze_audio(audio)
-        cleanup(audio)
-        
+    audioFilePath = generateTempAudioFile(requestData.base64Audio)
+    audioAnalysisResponse = audioExpert.analyze_audio(audioFilePath)
+            
     if(audioAnalysisResponse):
         expertResponse.AudioResponse = audioAnalysisResponse
+    
+    cleanup() #remove temp_directory
 
     #for now just go with gemini's response,TODO: implement weightings for expert findings, for more info on why we need to parse the response string look at geminiClass
     birdName = parse_birdName_string(expertResponse.GeminiResponse)
-
+    
     #new form response
     formResponseDTO.birdName = birdName
     formResponseDTO.expert = "gemini"
+    formResponseDTO.funFact = imageExpert.fun_fact(birdName)
     
 
     try:
@@ -78,10 +66,11 @@ def formSubmit():
         print(f"Error encoding image: {ex}")
 
     formResponseDTO.birdImage = base64Image
-    formResponseDTO.imageFound = imageFound #now can check this imageFound var and if an image of a bird isn't found we can return False, this way we can render a textbox stating suitable image not found on the F.E.
+    formResponseDTO.imageFound = imageFound
     
     return jsonify(
         success = True,
         message = "Form Submit Successful",
         formResponse = asdict(formResponseDTO),
+        expertResponse = expertResponse
     )
