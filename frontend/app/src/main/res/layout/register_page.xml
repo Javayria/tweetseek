@@ -83,9 +83,9 @@
 
                         android:fontFamily="monospace"
                         android:hint="password"
-
                         android:padding="8dp"
-                        />
+                        android:inputType="textPassword" />
+
 
                     <Button
                         android:id="@+id/registerButton"
