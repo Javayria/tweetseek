@@ -30,7 +30,9 @@
             android:id="@+id/birdName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40dp"
+            android:text="no, not quite..."
+            android:textSize="35dp"
+            android:layout_marginTop="70dp"
             android:textStyle="bold"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -43,42 +45,29 @@
             android:id="@+id/birdImage"
             android:layout_width="372dp"
             android:layout_height="255dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
 
         <!-- Expert -->
         <TextView
             android:id="@+id/birdExpert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="0dp"
             android:layout_marginBottom="20dp"
             android:textSize="20dp"
+            android:text="no, not quite..."
             android:textStyle="bold"
             android:textColor="@color/white"
             android:fontFamily="monospace"
             android:padding="8dp"
             android:gravity="center" />
 
-        <TextView
-            android:id="@+id/birdFunFact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="350dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="35dp"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="@color/blue"
-            android:background="@color/white"
-            android:padding="8dp"
-            android:gravity="center"/>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="0dp"
             android:gravity="center"
             android:layout_gravity="center">
 
@@ -105,6 +94,21 @@
                 android:textSize="15sp"
                 app:cornerRadius="10dp" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/birdFunFact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="315dp"
+            android:layout_marginTop="40dp"
+            android:text="did you know? birds are cool and funny and super cool"
+            android:layout_marginBottom="20dp"
+            android:textSize="15dp"
+            android:textAllCaps="false"
+            android:textColor="@color/blue"
+            android:padding="10dp"
+            android:gravity="center"
+            app:cornerRadius="10dp" />
 
         <!-- Share Button -->
         <ImageButton
