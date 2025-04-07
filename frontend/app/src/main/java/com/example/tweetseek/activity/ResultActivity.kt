@@ -54,6 +54,8 @@ class ResultActivity : AppCompatActivity() {
             }
         }
 
+        setupVerificationButtons()
+
         //exit button goes to homepage
         binding.exitButton.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, HomePageActivity::class.java).apply {
@@ -67,11 +69,12 @@ class ResultActivity : AppCompatActivity() {
         binding.uploadButton.setOnClickListener {
             shareTweet()
         }
+
     }
 
     private fun displayResults(name: String, image: String, expert: String, funFact: String) {
         binding.apply {
-            birdName.text = "BIRD: ${name.uppercase()}"
+            birdName.text = "${name.uppercase()}"
             birdExpert.text = "identified by $expert"
             birdFunFact.text = "did you know? ${funFact.lowercase()}"
 
@@ -170,5 +173,15 @@ class ResultActivity : AppCompatActivity() {
     private fun showErrorAndFinish(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         finish()
+    }
+
+    private fun setupVerificationButtons() {
+        binding.yesButton.setOnClickListener {
+            Toast.makeText(this, "Thank you for your feedback!", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.noButton.setOnClickListener {
+            Toast.makeText(this, "Thank you for your feedback!", Toast.LENGTH_SHORT).show()
+        }
     }
 }
