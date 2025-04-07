@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/patternedblue_bg_"
     tools:context=".activity.RegisterActivity">
 
@@ -25,13 +25,6 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/birdImage"
-            android:layout_width="372dp"
-            android:layout_height="255dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="30dp" />
-
         <!-- ID Result -->
         <TextView
             android:id="@+id/birdName"
@@ -45,6 +38,13 @@
             android:padding="0dp"
             android:gravity="center"
             />
+
+        <ImageView
+            android:id="@+id/birdImage"
+            android:layout_width="372dp"
+            android:layout_height="255dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp" />
 
         <!-- Expert -->
         <TextView
@@ -73,6 +73,38 @@
             android:background="@color/white"
             android:padding="8dp"
             android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/noButton"
+                android:layout_width="@dimen/button_width_s"
+                android:layout_height="65dp"
+                android:layout_marginEnd="15dp"
+                android:backgroundTint="@color/yellow"
+                android:fontFamily="monospace"
+                android:text="no, not quite..."
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:cornerRadius="10dp" />
+
+            <Button
+                android:id="@+id/yesButton"
+                android:layout_width="@dimen/button_width_s"
+                android:layout_height="65dp"
+                android:backgroundTint="@color/dark_green"
+                android:fontFamily="monospace"
+                android:text="Yes, this is correct!"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
 
         <!-- Share Button -->
         <ImageButton
